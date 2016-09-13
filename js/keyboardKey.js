@@ -25,6 +25,9 @@ KeyboardKey.prototype=
 	keyDown : function (evt)
 	{
 		console.log(evt.keyCode)
+		console.log(Self.Map.x)
+		
+
 		switch(evt.keyCode)
 		{
 			case 90:
@@ -44,6 +47,7 @@ KeyboardKey.prototype=
 					{
 						Self.Perso.left();
 						Self.Map.left();
+						Self.drawAll();
 					},10);
 				}
 			break;
@@ -55,6 +59,7 @@ KeyboardKey.prototype=
 					{
 						Self.Perso.right();	
 						Self.Map.right();
+						Self.drawAll();
 					},10);
 				}
 			break;

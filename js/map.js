@@ -5,6 +5,7 @@ function Map ()
 	this.x=0;
 	this.backgroundLenght;
 	this.vx=3;
+	this.width=2500;
 }
 Map.prototype=
 {
@@ -26,12 +27,18 @@ Map.prototype=
 	},
 	left : function () 
 	{
-		this.x -= this.vx;
-		Self.drawAll();
+		if(Self.Perso.x+Self.Perso.width*2>Self.c.width/2)
+		{
+			this.x -= this.vx;
+			Self.Perso.x -= Self.Perso.vx;
+		}
 	},
 	right : function () 
 	{
-		this.x += this.vx;		
-		Self.drawAll();
+		if(Self.Perso.x+Self.Perso.width*2<Self.c.width/2 && this.x<0)
+		{
+			this.x += this.vx;
+			Self.Perso.x += Self.Perso.vx;
+		}
 	}
 }

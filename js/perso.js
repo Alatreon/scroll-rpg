@@ -77,12 +77,10 @@ Perso.prototype =
 	left : function () 
 	{
 		this.x += this.vx;
-		Self.drawAll();
 	},
 	right : function () 
 	{
-		this.x -= this.vx;		
-		Self.drawAll();
+		this.x -= this.vx;
 	},
 	stop : function (evt) 
 	{
