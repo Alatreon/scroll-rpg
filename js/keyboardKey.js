@@ -43,6 +43,7 @@ KeyboardKey.prototype=
 					this.heroMoveRightInter = setInterval(function()
 					{
 						Self.Perso.left();
+						Self.Map.left();
 					},10);
 				}
 			break;
@@ -53,6 +54,7 @@ KeyboardKey.prototype=
 					this.heroMoveLeftInter = setInterval(function()
 					{
 						Self.Perso.right();	
+						Self.Map.right();
 					},10);
 				}
 			break;

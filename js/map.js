@@ -4,6 +4,7 @@ function Map ()
 	this.y=-275;
 	this.x=0;
 	this.backgroundLenght;
+	this.vx=3;
 }
 Map.prototype=
 {
@@ -22,12 +23,15 @@ Map.prototype=
 
 			
 		}
-
-		// Self.ctx.drawImage(Self.LoadImage.loadedImgList[0], this.x, this.y); 
-		// //repeter ce truc while (LoadImage.loadedImgList[0].width < canvas.width)
-
-		// Self.ctx.drawImage(Self.LoadImage.loadedImgList[0], this.x+Self.LoadImage.loadedImgList[0].width, this.y);
-
-		// Self.ctx.drawImage(Self.LoadImage.loadedImgList[0], this.x+Self.LoadImage.loadedImgList[0].width, this.y);
+	},
+	left : function () 
+	{
+		this.x -= this.vx;
+		Self.drawAll();
+	},
+	right : function () 
+	{
+		this.x += this.vx;		
+		Self.drawAll();
 	}
 }
