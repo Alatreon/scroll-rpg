@@ -25,7 +25,7 @@ KeyboardKey.prototype=
 	keyDown : function (evt)
 	{
 		console.log(evt.keyCode)
-		console.log(Self.Map.x)
+		console.log((Self.Perso.x+Self.Map.x))
 		
 
 		switch(evt.keyCode)

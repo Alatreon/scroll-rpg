@@ -1,7 +1,7 @@
 function LoadImage ()
 {
 	this.UrlImgList=[
-		"img/backgroundmin.png", 
+		"img/backgroundmax.png", 
 		/*"https://www.mozaweb.com/fr/partner_images/3D_crop_Structure.png"*/
 	];
 	this.imgSrc='';
@@ -23,7 +23,7 @@ LoadImage.prototype=
 			{
 				self.numberImgLoaded+=1
 				self.addloadedImg(img,callbackMain);
-			}	
+			}
 		}
 	},
 	addloadedImg : function (img,callbackMain)

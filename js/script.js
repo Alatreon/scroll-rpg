@@ -5,6 +5,7 @@ function Main ()
 	this.ctx = Self.c.getContext("2d");
 
 	this.LoadImage = new LoadImage;
+	
 	this.KeyboardKey = new KeyboardKey;
 	this.Map = new Map;
 	this.Perso = new Perso;
