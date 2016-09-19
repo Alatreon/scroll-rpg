@@ -101,13 +101,14 @@ Perso.prototype =
 		if(this.incrMoveAnim==1 || this.incrMoveAnim>this.vx*5)
 		{
 			this.moveAnimIncr();
+
 			if(this.incrMoveAnim>this.vx*5){this.incrMoveAnim=0}			
 		}
 
 	},
 	moveAnimIncr : function ()
-	{		
-		if(this.leftrightAnim<192 && Self.KeyboardKey.heroMoveJumpBool==true)
+	{
+		if(this.leftrightAnim<192 && this.jumpPos == 0)
 		{
 			this.leftrightAnim+=64;
 			this.incrMoveAnim=10;
