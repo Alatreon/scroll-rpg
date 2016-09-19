@@ -23,18 +23,8 @@ function Perso ()
 Perso.prototype = 
 {
 	draw : function () 
-	{
-		/*dessin de Perso sur le canvas*/
-	  	Self.ctx.beginPath();
-
-		Self.ctx.moveTo(this.x,this.y); 
-		Self.ctx.lineTo(this.x+this.width,this.y+this.height);
-		Self.ctx.moveTo(this.x+this.width,this.y); 
-		Self.ctx.lineTo(this.x,this.y+this.height);
-
-		Self.ctx.closePath();
-
-		Self.ctx.stroke();	
+	{		
+		Self.ctx.drawImage(Self.LoadImage.loadedImgList[1],0,0,this.width,this.height,this.x,this.y,this.width,this.height);
 	},
 	jump : function (callback) 
 	{

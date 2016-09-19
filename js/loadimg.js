@@ -2,9 +2,8 @@ function LoadImage ()
 {
 	this.UrlImgList=[
 		"img/backgroundmax.png", 
-		/*"https://www.mozaweb.com/fr/partner_images/3D_crop_Structure.png"*/
+		"img/mariosprite.png"
 	];
-	this.imgSrc='';
 	this.loadedImgList=[];
 	this.numberImgLoaded=0;
 
@@ -14,24 +13,33 @@ LoadImage.prototype=
 	loader : function (callbackMain)
 	{
 		self=this;
+		
 		for(var i = 0; i<this.UrlImgList.length; i++)
 		{
-			var img =[]
 			img = new Image();
+
 			img.src = this.UrlImgList[i];
-			img.onload = function()
+
+			this.loadedImgList.push(img)
+
+			this.loadedImgList[i].onload = function()
 			{
 				self.numberImgLoaded+=1
-				self.addloadedImg(img,callbackMain);
+				self.addloadedImg(callbackMain);
 			}
+			console.log(this.loadedImgList[i].src)
 		}
+		// console.log(this.loadedImgList[0].src+"/"+this.loadedImgList[1].src)
 	},
-	addloadedImg : function (img,callbackMain)
+	addloadedImg : function (callbackMain)
 	{
-		this.loadedImgList.push(img);
+
+		console.log(this.UrlImgList.length+"/"+this.numberImgLoaded)
+
 		if(this.UrlImgList.length==this.numberImgLoaded)
 		{
 			callbackMain();
 		}
+
 	}
 }

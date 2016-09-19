@@ -1,6 +1,6 @@
 function Map ()
 {
-	this.floorVal=470;
+	this.floorVal=460;
 	this.y=275;
 	this.x=0;
 	this.backgroundLenght;
