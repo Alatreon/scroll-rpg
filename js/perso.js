@@ -7,55 +7,67 @@ function Perso ()
 
 	/*Vitesse de Perso*/
 	/*deplacement*/
-	this.vx= 3;
+	this.vx = 3;
 	/*saut*/
-	this.vy= 2;
+	this.vy = 2;
 
 
 	/*Details visuels de Perso*/
 	this.width = 64;
 	this.height = 128;
 
+	/*animation*/
+	this.jumpanim=0;
+	this.leftright=0;
+
 	this.color = 'blue';
 
-	this.JumpSize = 128;
+	this.JumpSize = 86;
+	this.jumpPos = 0;
 }
 Perso.prototype = 
 {
 	draw : function ()
-	{		
-		Self.ctx.drawImage(Self.LoadImage.loadedImgList[1],0,0,this.width,this.height,this.x,this.y,this.width,this.height);
+	{	
+		Self.ctx.drawImage(Self.LoadImage.loadedImgList[1],this.jumpanim+this.leftright,0,this.width,this.height,this.x,this.y,this.width,this.height);
 	},
 	jump : function (callback) 
 	{
 		self=this		
 		/*Mise en place des variables qui vont determiner la position du saut*/
 		var hautBas = true;
-		var i = 0;
 
 		/*animation du saut*/
 		this.heroMoveJumpInter = setInterval(function()
 		{
-			i+=1;
+			self.jumpPos+=1;
 
-			if( hautBas == true && i < self.JumpSize/2 )
+			if( hautBas == true && self.jumpPos < self.JumpSize )
 			{
+				self.jumpanim=320;
+
 				self.y -= self.vy;
 			}
-			if( hautBas == true && i == self.JumpSize/2 )
+			if( hautBas == true && self.jumpPos == self.JumpSize )
 			{
+				self.jumpanim=0;
+
 				hautBas = false;
 			}
-			if( hautBas == false && i < self.JumpSize )
+			if( hautBas == false && self.jumpPos < self.JumpSize*2 )
 			{
+				self.jumpanim=0;
+				
 				self.y += self.vy;
 			}
-			if( hautBas == false && i == self.JumpSize )
+			if( hautBas == false && self.jumpPos == self.JumpSize*2 )
 			{
+				self.jumpanim=0;
+				
+				self.jumpanim=false;
 				hautBas = true;
-				i = 0;
+				self.jumpPos = 0;
 				self.y=Self.Map.floorVal;
-				clearInterval(self.heroMoveJumpInter);
 				callback();
 			}
 			
@@ -67,10 +79,12 @@ Perso.prototype =
 	left : function () 
 	{
 		this.x += this.vx;
+		this.leftright=0;
 	},
 	right : function () 
 	{
 		this.x -= this.vx;
+		this.leftright=1344;
 	},
 	stop : function (evt) 
 	{

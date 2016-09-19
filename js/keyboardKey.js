@@ -25,17 +25,19 @@ KeyboardKey.prototype=
 	keyDown : function (evt)
 	{
 		console.log(evt.keyCode)
-		console.log((Self.Perso.x+Self.Map.x))
+
+		// console.log((Self.Perso.x+Self.Map.x))
 		
 
 		switch(evt.keyCode)
 		{
 			case 90:
-				if(evt.keyCode==90 && this.heroMoveJumpBool)
+				if(evt.keyCode==90 && Self.Perso.jumpPos<1)
 				{
 					this.heroMoveJumpBool=false;
 					Self.Perso.jump(function(){
 						Self.KeyboardKey.heroMoveJumpBool=true;
+						clearInterval(self.heroMoveJumpInter);
 					});
 				}
 			break;
