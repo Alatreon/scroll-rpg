@@ -22,7 +22,7 @@ function Perso ()
 }
 Perso.prototype = 
 {
-	draw : function () 
+	draw : function ()
 	{		
 		Self.ctx.drawImage(Self.LoadImage.loadedImgList[1],0,0,this.width,this.height,this.x,this.y,this.width,this.height);
 	},
