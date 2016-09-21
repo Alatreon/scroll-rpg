@@ -40,6 +40,7 @@ Perso.prototype =
 		/*Mise en place des variables qui vont determiner la position du saut*/
 
 		/*animation du saut*/
+		this.leftrightAnim=0;
 		this.heroMoveJumpInter = setInterval(function()
 		{
 			self.jumpPos+=1;
@@ -74,7 +75,7 @@ Perso.prototype =
 			
 			Self.drawAll();		
 		
-		},6);
+		},4);
 
 	},
 	left : function () 
@@ -96,27 +97,20 @@ Perso.prototype =
 	},
 	moveAnim : function ()
 	{
-		this.incrMoveAnim+=1;
-
-		if(this.incrMoveAnim==1 || this.incrMoveAnim>this.vx*5)
+		if(Self.KeyboardKey.heroMoveJumpBool)
 		{
-			this.moveAnimIncr();
+			this.incrMoveAnim+=1;
 
-			if(this.incrMoveAnim>this.vx*5){this.incrMoveAnim=0}			
-		}
+			if(this.incrMoveAnim>4)
+			{
+				
+				this.incrMoveAnim=0;
 
-	},
-	moveAnimIncr : function ()
-	{
-		if(this.leftrightAnim<192 && this.jumpPos == 0)
-		{
-			this.leftrightAnim+=64;
-			this.incrMoveAnim=10;
-		}
-		else
-		{
-			this.leftrightAnim=0;
+				this.leftrightAnim+=64;
 
-		}
+				if(this.leftrightAnim>192){this.leftrightAnim=0;}
+
+			}
+		}	
 	}
 }

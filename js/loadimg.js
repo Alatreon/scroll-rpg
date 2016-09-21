@@ -27,14 +27,14 @@ LoadImage.prototype=
 				self.numberImgLoaded+=1
 				self.addloadedImg(callbackMain);
 			}
-			console.log(this.loadedImgList[i].src)
+			// console.log(this.loadedImgList[i].src)
 		}
 		// console.log(this.loadedImgList[0].src+"/"+this.loadedImgList[1].src)
 	},
 	addloadedImg : function (callbackMain)
 	{
 
-		console.log(this.UrlImgList.length+"/"+this.numberImgLoaded)
+		// console.log(this.UrlImgList.length+"/"+this.numberImgLoaded)
 
 		if(this.UrlImgList.length==this.numberImgLoaded)
 		{
