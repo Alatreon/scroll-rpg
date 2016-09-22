@@ -17,7 +17,6 @@ function Map ()
 			{width:32*2, height:32, x:600, y:100}
 		]
 	};
-	this.obsPat;
 }
 Map.prototype=
 {
