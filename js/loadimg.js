@@ -2,7 +2,8 @@ function LoadImage ()
 {
 	this.UrlImgList=[
 		"img/backgroundmax.png", 
-		"img/mariosprite.png"
+		"img/mariosprite.png",
+		"img/brick.png"
 	];
 	this.loadedImgList=[];
 	this.numberImgLoaded=0;
@@ -25,16 +26,13 @@ LoadImage.prototype=
 			this.loadedImgList[i].onload = function()
 			{
 				self.numberImgLoaded+=1
+
 				self.addloadedImg(callbackMain);
 			}
-			// console.log(this.loadedImgList[i].src)
 		}
-		// console.log(this.loadedImgList[0].src+"/"+this.loadedImgList[1].src)
 	},
 	addloadedImg : function (callbackMain)
 	{
-
-		// console.log(this.UrlImgList.length+"/"+this.numberImgLoaded)
 
 		if(this.UrlImgList.length==this.numberImgLoaded)
 		{

@@ -27,6 +27,7 @@ Main.prototype=
 		
 		Self.Map.setBackground();
 		Self.Perso.draw();
+		Self.Map.createObstacle();
 
 	}
 
