@@ -4,13 +4,11 @@ function Perso ()
 	this.x = 50;
 	this.y = Self.Map.floorVal;
 
-
 	/*Vitesse de Perso*/
 	/*deplacement*/
 	this.vx = 3;
 	/*saut*/
 	this.vy = 2;
-
 
 	/*Details visuels de Perso*/
 	this.width = 64;
@@ -30,9 +28,9 @@ function Perso ()
 }
 Perso.prototype = 
 {
-	draw : function ()
+	draw : function (img,jumpanim,leftright,leftrightAnim,topbotAnim,width,height,x,y,width,height)
 	{	
-		Self.ctx.drawImage(Self.LoadImage.loadedImgList[1],this.jumpanim+this.leftright+this.leftrightAnim,0,this.width,this.height,this.x,this.y,this.width,this.height);
+		Self.ctx.drawImage(img,jumpanim+leftright+leftrightAnim,topbotAnim,width,height,x,y,width,height);
 	},
 	jump : function (callback) 
 	{
@@ -72,8 +70,7 @@ Perso.prototype =
 				self.y=Self.Map.floorVal;
 				callback();
 			}
-			
-			Self.drawAll();		
+			Self.drawAll();
 		
 		},4);
 

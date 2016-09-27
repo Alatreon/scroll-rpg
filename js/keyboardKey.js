@@ -27,7 +27,6 @@ KeyboardKey.prototype=
 		// console.log(evt.keyCode)
 
 		// console.log((Self.Perso.x+Self.Map.x))
-		
 
 		switch(evt.keyCode)
 		{
@@ -62,6 +61,7 @@ KeyboardKey.prototype=
 						Self.Perso.right();	
 						Self.Map.right();
 						Self.drawAll();
+
 					},10);
 				}
 			break;
