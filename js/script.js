@@ -4,6 +4,8 @@ function Main ()
 	this.c = document.getElementById("mon_canvas");
 	this.ctx = Self.c.getContext("2d");
 
+	this.addrServ="http://127.0.0.1";
+
 	this.LoadImage = new LoadImage;
 	
 	this.KeyboardKey = new KeyboardKey;

@@ -1,9 +1,9 @@
 function LoadImage ()
 {
 	this.UrlImgList=[
-		"http://127.0.0.1:8080/scroll-rpg/img/backgroundmax.png", 
-		"http://127.0.0.1:8080/scroll-rpg/img/mariosprite.png",
-		"http://127.0.0.1:8080/scroll-rpg/img/brick.png"
+		Self.addrServ+":8080/scroll-rpg/img/backgroundmax.png", 
+		Self.addrServ+":8080/scroll-rpg/img/mariosprite.png",
+		Self.addrServ+":8080/scroll-rpg/img/brick.png"
 	];
 	this.loadedImgList=[];
 	this.numberImgLoaded=0;

@@ -40,6 +40,7 @@ Perso.prototype =
 		this.leftrightAnim=0;
 		this.heroMoveJumpInter = setInterval(function()
 		{
+			Self.Map.checkObstacle();
 			self.jumpPos+=1;
 
 			if( self.hautBas == true && self.jumpPos < self.JumpSize )

@@ -44,8 +44,10 @@ Map.prototype=
 	},
 	createObstacle : function ()
 	{
-		for(var i=0; i<this.mapObstacles.obstacles.length; i++){
-			for(var y=1; y<this.mapObstacles.obstacles[i].width; y+=32){
+		for(var i=0; i<this.mapObstacles.obstacles.length; i++)
+		{
+			for(var y=1; y<this.mapObstacles.obstacles[i].width; y+=32)
+			{
 				Self.ctx.drawImage(
 					Self.LoadImage.loadedImgList[2],
 
@@ -57,6 +59,19 @@ Map.prototype=
 		
 					32,32
 				);
+			}
+		}
+	},
+	checkObstacle : function ()
+	{
+		for(var i=0; i<this.mapObstacles.obstacles.length; i++)
+		{
+			if (Self.Perso.x < this.mapObstacles.obstacles[i].x + this.mapObstacles.obstacles[i].width &&
+				Self.Perso.x + Self.Perso.width > this.mapObstacles.obstacles[i].x &&
+				Self.Perso.y < this.mapObstacles.obstacles[i].y + this.mapObstacles.obstacles[i].height &&
+				Self.Perso.height + Self.Perso.y > this.mapObstacles.obstacles[i].y)
+			{
+		    	console.log("collision détectée !");
 			}
 		}
 	}
