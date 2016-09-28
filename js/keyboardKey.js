@@ -61,7 +61,6 @@ KeyboardKey.prototype=
 						Self.Perso.right();	
 						Self.Map.right();
 						Self.drawAll();
-
 					},10);
 				}
 			break;

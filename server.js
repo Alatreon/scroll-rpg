@@ -30,13 +30,14 @@ io.sockets.on('connection', function (socket) {
 
     });
     
-    socket.on('serv_perso_update', function(perso, mappos, socketr) {
+    socket.on('serv_perso_update', function(perso, mappos) {
 
     	console.log(partie.players.length);
 
 
 		for(var i = 0; i<partie.players.length; i++)
 		{
+    		// console.log(partie.players[i].perso.x);
 			if(partie.players[i].playerId == socket.id)
 			{
     			perso.x=perso.x+mappos;

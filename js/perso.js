@@ -34,8 +34,7 @@ Perso.prototype =
 	},
 	jump : function (callback) 
 	{
-		self=this		
-		/*Mise en place des variables qui vont determiner la position du saut*/
+		self=this
 
 		/*animation du saut*/
 		this.leftrightAnim=0;
@@ -98,14 +97,13 @@ Perso.prototype =
 		{
 			this.incrMoveAnim+=1;
 
-			if(this.incrMoveAnim>4)
+			if(this.incrMoveAnim>7)
 			{
-				
 				this.incrMoveAnim=0;
 
 				this.leftrightAnim+=64;
 
-				if(this.leftrightAnim>192){this.leftrightAnim=0;}
+				if(this.leftrightAnim>192){this.leftrightAnim=64;}
 
 			}
 		}	

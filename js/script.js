@@ -9,52 +9,10 @@ function Main ()
 	this.KeyboardKey = new KeyboardKey;
 	this.Map = new Map;
 	this.Perso = new Perso;
-	this.socketId;
-	this.partie;
-
-	this.socket = io.connect('http://127.0.0.1:8089');
+	this.Partie = new Partie;
 }
 Main.prototype=
 {
-	connection : function ()
-	{
-		Self.socket.on('client_connected', function(socketId, partie) {
-
-			Self.socketId=socketId;
-
-			Self.partie=partie;
-
-			Self.launchKey();
-
-			Self.sendPerso();
-
-			Self.socket.on('client_recept_partie', function(partie) {
-
-				Self.partie=partie;
-				
-				console.log(Self.partie);
-
-			    Self.drawAll();
-
-			});
-
-		});
-
-		Self.socket.on('client_we_lose_a_player', function() {
-
-			Self.sendPerso();
-
-		});
-
-	},
-	sendPerso : function ()
-	{
-		Self.socket.emit('serv_perso_recept', Self.Perso, Self.Map.x, Self.socketId);
-	},
-	updatePerso : function ()
-	{
-		Self.socket.emit('serv_perso_update', Self.Perso, Self.Map.x, Self.socketId);
-	},
 	launchKey : function ()
 	{
 		Self.LoadImage.loader(function(){		
@@ -92,20 +50,20 @@ Main.prototype=
 	},
 	drawOtherPlayer : function ()
 	{
-		for(var i = 0; i<Self.partie.players.length; i++)
+		for(var i = 0; i<Self.Partie.partie.players.length; i++)
 		{
-			if(!(Self.partie.players[i].playerId == Self.socketId))
+			if(!(Self.Partie.partie.players[i].playerId == Self.Partie.socketId))
 			{
 				Self.ctx.drawImage(
 					Self.LoadImage.loadedImgList[1],
-					Self.partie.players[i].perso.jumpanim+Self.partie.players[i].perso.leftright+Self.partie.players[i].perso.leftrightAnim,
+					Self.Partie.partie.players[i].perso.jumpanim+Self.Partie.partie.players[i].perso.leftright+Self.Partie.partie.players[i].perso.leftrightAnim,
 					0,
-					Self.partie.players[i].perso.width,
-					Self.partie.players[i].perso.height,
-					Self.partie.players[i].perso.x-Self.Map.x,
-					Self.partie.players[i].perso.y,
-					Self.partie.players[i].perso.width,
-					Self.partie.players[i].perso.height
+					Self.Partie.partie.players[i].perso.width,
+					Self.Partie.partie.players[i].perso.height,
+					Self.Partie.partie.players[i].perso.x-Self.Map.x,
+					Self.Partie.partie.players[i].perso.y,
+					Self.Partie.partie.players[i].perso.width,
+					Self.Partie.partie.players[i].perso.height
 				);
 			}
 		}
@@ -115,9 +73,4 @@ Main.prototype=
 
 var Main = new Main;
 
-Main.connection();
-
-setInterval(function()
-{
-	Main.updatePerso();
-},1000);
+Main.Partie.connection();
