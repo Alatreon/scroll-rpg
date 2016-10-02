@@ -1,12 +1,22 @@
+var express = require('express');
 var http = require('http');
 var fs = require('fs');
+var app = express();
+var port = process.env.PORT || 8000;
 
-var server = http.createServer(function(req, res) {
-    fs.readFile('./index.html', 'utf-8', function(error, content) {
+app.use('/css', express.static('css'));
+app.use('/img', express.static('img'));
+app.use('/js', express.static('js'));
+
+app.get('/', function(req, res) 
+{
+  fs.readFile('./index.html', 'utf-8', function(error, content) {
         res.writeHead(200, {"Content-Type": "text/html"});
         res.end(content);
     });
 });
+
+var server = http.createServer(app);
 
 var partie = {players : []};
 
@@ -59,4 +69,4 @@ io.sockets.on('connection', function (socket) {
 	});
 });
 
-server.listen(8089);
+server.listen(port);

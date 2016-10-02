@@ -2,7 +2,7 @@ function Partie ()
 {
 	this.socketId;
 	this.partie;
-	this.socket = io.connect(Self.addrServ+":8089");
+	this.socket = io.connect(Self.addrServ+":8000");
 }
 Partie.prototype=
 {
