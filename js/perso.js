@@ -70,7 +70,6 @@ Perso.prototype =
 				self.y=Self.Map.floorVal;
 				callback();
 			}
-			Self.drawAll();
 		
 		},4);
 
@@ -90,7 +89,6 @@ Perso.prototype =
 	stop : function (evt) 
 	{
 		this.leftrightAnim=0;
-		Self.drawAll();
 	},
 	moveAnim : function ()
 	{

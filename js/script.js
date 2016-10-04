@@ -21,52 +21,55 @@ Main.prototype=
 
 			Self.KeyboardKey.actionKeys();
 			
-			Self.drawAll();
+			/*Self.drawAll();*/
 		});
 	},
 	drawAll : function ()
-	{
-		Self.ctx.clearRect(0, 0, Self.c.width, Self.c.height);
+	{		
+		setInterval(function()
+		{
+			Self.ctx.clearRect(0, 0, Self.c.width, Self.c.height);
 
-		// Self.sendPerso();
+			Self.Map.setBackground();
 
-		Self.Map.setBackground();
+			Self.Perso.draw(
+				Self.LoadImage.loadedImgList[1],
+				Self.Perso.jumpanim,
+				Self.Perso.leftright,
+				Self.Perso.leftrightAnim,
+				0,
+				Self.Perso.width,
+				Self.Perso.height,
+				Self.Perso.x,
+				Self.Perso.y,
+				Self.Perso.width,
+				Self.Perso.height
+			);
 
-		Self.Perso.draw(
-			Self.LoadImage.loadedImgList[1],
-			Self.Perso.jumpanim,
-			Self.Perso.leftright,
-			Self.Perso.leftrightAnim,
-			0,
-			Self.Perso.width,
-			Self.Perso.height,
-			Self.Perso.x,
-			Self.Perso.y,
-			Self.Perso.width,
-			Self.Perso.height
-		);
+			Self.drawOtherPlayer();
 
-		Self.drawOtherPlayer();
-
-		Self.Map.createObstacle();
+			Self.Map.createObstacle();		
+		},10);
 	},
 	drawOtherPlayer : function ()
 	{
-		for(var i = 0; i<Self.Partie.partie.players.length; i++)
-		{
-			if(!(Self.Partie.partie.players[i].playerId == Self.Partie.socketId))
+		if (Self.Partie.partie.players.length>1) {
+			for(var i = 0; i<Self.Partie.partie.players.length; i++)
 			{
-				Self.ctx.drawImage(
-					Self.LoadImage.loadedImgList[1],
-					Self.Partie.partie.players[i].perso.jumpanim+Self.Partie.partie.players[i].perso.leftright+Self.Partie.partie.players[i].perso.leftrightAnim,
-					0,
-					Self.Partie.partie.players[i].perso.width,
-					Self.Partie.partie.players[i].perso.height,
-					Self.Partie.partie.players[i].perso.x-Self.Map.x,
-					Self.Partie.partie.players[i].perso.y,
-					Self.Partie.partie.players[i].perso.width,
-					Self.Partie.partie.players[i].perso.height
-				);
+				if(!(Self.Partie.partie.players[i].playerId == Self.Partie.socketId))
+				{
+					Self.ctx.drawImage(
+						Self.LoadImage.loadedImgList[1],
+						Self.Partie.partie.players[i].perso.jumpanim+Self.Partie.partie.players[i].perso.leftright+Self.Partie.partie.players[i].perso.leftrightAnim,
+						0,
+						Self.Partie.partie.players[i].perso.width,
+						Self.Partie.partie.players[i].perso.height,
+						Self.Partie.partie.players[i].perso.x-Self.Map.x,
+						Self.Partie.partie.players[i].perso.y,
+						Self.Partie.partie.players[i].perso.width,
+						Self.Partie.partie.players[i].perso.height
+					);
+				}
 			}
 		}
 	}

@@ -16,14 +16,13 @@ Partie.prototype=
 
 			Self.launchKey();
 
+			Self.drawAll();
+
 			Self.Partie.sendPerso();
 
 			Self.Partie.socket.on('client_recept_partie', function(partie) {
 
 				Self.Partie.partie=partie;
-				
-			    Self.drawAll();
-
 			});
 
 		});
@@ -49,8 +48,12 @@ Partie.prototype=
 	{
 		setInterval(function()
 		{
-			Main.Partie.updatePerso();
-
-		},100);
+			if(Self.Perso.leftrightAnim!=0 || Self.Perso.jumpPos>0)
+			{
+				Self.Partie.updatePerso();
+			}
+			
+		},40);
+		
 	}
 }

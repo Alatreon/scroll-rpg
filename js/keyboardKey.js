@@ -49,7 +49,7 @@ KeyboardKey.prototype=
 						Self.Map.checkObstacle();
 						Self.Perso.left();
 						Self.Map.left();
-						Self.drawAll();
+						/*Self.drawAll();*/
 					},10);
 				}
 			break;
@@ -62,7 +62,7 @@ KeyboardKey.prototype=
 						Self.Map.checkObstacle();
 						Self.Perso.right();	
 						Self.Map.right();
-						Self.drawAll();
+						/*Self.drawAll();*/
 					},10);
 				}
 			break;

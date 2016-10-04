@@ -26,7 +26,7 @@ io.sockets.on('connection', function (socket) {
 
 	console.log("Connection de "+socket.id);
 
-	socket.emit('client_connected', socket.id,partie);
+	socket.emit('client_connected', socket.id, partie);
 
     socket.on('serv_perso_recept', function(perso, mappos) {
 
@@ -53,8 +53,8 @@ io.sockets.on('connection', function (socket) {
     			perso.x=perso.x+mappos;
 
 				partie.players[i].perso=perso
-
-				socket.broadcast.emit('client_recept_partie', partie);
+    			
+    			socket.broadcast.emit('client_recept_partie', partie);
 			}
 		}		
     });
@@ -65,7 +65,7 @@ io.sockets.on('connection', function (socket) {
 
 		socket.broadcast.emit('client_we_lose_a_player');
 
-		console.log("Deconnection de "+socket.id);
+		// console.log("Deconnection de "+socket.id);
 	});
 });
 
