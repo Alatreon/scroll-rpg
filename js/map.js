@@ -71,7 +71,7 @@ Map.prototype=
 				Self.Perso.y < this.mapObstacles.obstacles[i].y + this.mapObstacles.obstacles[i].height &&
 				Self.Perso.height + Self.Perso.y > this.mapObstacles.obstacles[i].y)
 			{
-		    	// console.log("collision détectée !");
+		    	console.log("collisàion détectée !");
 			}
 		}
 	}

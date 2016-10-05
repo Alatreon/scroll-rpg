@@ -18,9 +18,10 @@ app.get('/', function(req, res)
 
 var server = http.createServer(app);
 
+var io = require('socket.io').listen(server);
+
 var partie = {players : []};
 
-var io = require('socket.io').listen(server);
 
 io.sockets.on('connection', function (socket) {
 
@@ -43,7 +44,6 @@ io.sockets.on('connection', function (socket) {
     socket.on('serv_perso_update', function(perso, mappos) {
 
     	console.log(partie.players.length);
-
 
 		for(var i = 0; i<partie.players.length; i++)
 		{

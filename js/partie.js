@@ -48,12 +48,12 @@ Partie.prototype=
 	{
 		setInterval(function()
 		{
-			if(Self.Perso.leftrightAnim!=0 || Self.Perso.jumpPos>0)
-			{
+			// if(Self.Perso.leftrightAnim!=0 || Self.Perso.jumpPos>0)
+			// {
 				Self.Partie.updatePerso();
-			}
+			// }
 			
-		},40);
+		},50);
 		
 	}
 }
