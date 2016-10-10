@@ -16,7 +16,7 @@ function Map ()
 			{width:32, height:32, x:600, y:610},
 			{width:32*3, height:32, x:200, y:470},
 			{width:512, height:32, x:1640, y:300},
-			{width:128, height:32, x:64*15, y:64*7},
+			{width:128, height:32, x:64*15, y:435},
 			{width:32*5, height:32, x:64*20, y:64*5},
 			{width:32*2, height:32, x:64*35, y:200},
 			{width:32*2, height:32, x:600, y:100}
@@ -71,12 +71,25 @@ Map.prototype=
 	// {
 	// 	for(var i=0; i<this.mapObstacles.obstacles.length; i++)
 	// 	{
-	// 		if (Self.Perso.x < this.mapObstacles.obstacles[i].x + this.mapObstacles.obstacles[i].width &&
-	// 			Self.Perso.x + Self.Perso.width > this.mapObstacles.obstacles[i].x &&
+	// 		if (Self.Perso.x + Self.Map.x - this.colBorder < this.mapObstacles.obstacles[i].x + this.mapObstacles.obstacles[i].width &&
+	// 			Self.Perso.x + Self.Map.x + Self.Perso.width + this.colBorder > this.mapObstacles.obstacles[i].x &&
+	// 			Self.Perso.y - this.colBorder < this.mapObstacles.obstacles[i].y + this.mapObstacles.obstacles[i].height &&
+	// 			Self.Perso.height + Self.Perso.y + this.colBorder > this.mapObstacles.obstacles[i].y)
+	// 		{
+	// 			if (Self.Perso.x + Self.Map.x - this.colBorder < this.mapObstacles.obstacles[i].x + this.mapObstacles.obstacles[i].width &&
+	// 			Self.Perso.x + Self.Map.x + Self.Perso.width + this.colBorder > this.mapObstacles.obstacles[i].x &&
 	// 			Self.Perso.y < this.mapObstacles.obstacles[i].y + this.mapObstacles.obstacles[i].height &&
 	// 			Self.Perso.height + Self.Perso.y > this.mapObstacles.obstacles[i].y)
-	// 		{
-	// 	    	console.log("collision détectée !");
+	// 			{
+	// 	    		console.log("collision détectée gauche/droite");				
+	// 			}
+	// 			if (Self.Perso.x + Self.Map.x < this.mapObstacles.obstacles[i].x + this.mapObstacles.obstacles[i].width &&
+	// 			Self.Perso.x + Self.Map.x + Self.Perso.width > this.mapObstacles.obstacles[i].x &&
+	// 			Self.Perso.y - this.colBorder < this.mapObstacles.obstacles[i].y + this.mapObstacles.obstacles[i].height &&
+	// 			Self.Perso.height + Self.Perso.y + this.colBorder > this.mapObstacles.obstacles[i].y)
+	// 			{					
+	// 	    		console.log("collision détectée haut/bas");
+	// 			}
 	// 		}
 	// 	}
 	// },
@@ -89,7 +102,34 @@ Map.prototype=
 				Self.Perso.y - this.colBorder < this.mapObstacles.obstacles[i].y + this.mapObstacles.obstacles[i].height &&
 				Self.Perso.height + Self.Perso.y + this.colBorder > this.mapObstacles.obstacles[i].y)
 			{
-		    	console.log("collision détectée !");
+				if (Self.Perso.x + Self.Map.x + Self.Perso.width < this.mapObstacles.obstacles[i].x &&
+					Self.Perso.x + Self.Map.x + Self.Perso.width + this.colBorder > this.mapObstacles.obstacles[i].x &&
+					Self.Perso.y < this.mapObstacles.obstacles[i].y + this.mapObstacles.obstacles[i].height &&
+					Self.Perso.height + Self.Perso.y > this.mapObstacles.obstacles[i].y)
+				{
+		    		console.log("collision détectée gauche");
+				}
+				if (Self.Perso.x + Self.Map.x - this.colBorder < this.mapObstacles.obstacles[i].x + this.mapObstacles.obstacles[i].width &&
+					Self.Perso.x + Self.Map.x > this.mapObstacles.obstacles[i].x + this.mapObstacles.obstacles[i].width &&
+					Self.Perso.y < this.mapObstacles.obstacles[i].y + this.mapObstacles.obstacles[i].height &&
+					Self.Perso.height + Self.Perso.y > this.mapObstacles.obstacles[i].y)
+				{
+		    		console.log("collision détectée droite");				
+				}
+				if (Self.Perso.x + Self.Map.x < this.mapObstacles.obstacles[i].x + this.mapObstacles.obstacles[i].width &&
+					Self.Perso.x + Self.Map.x + Self.Perso.width > this.mapObstacles.obstacles[i].x &&
+					Self.Perso.y + Self.Perso.height < this.mapObstacles.obstacles[i].y &&
+					Self.Perso.height + Self.Perso.y + this.colBorder > this.mapObstacles.obstacles[i].y)
+				{					
+		    		console.log("collision détectée haut");
+				}
+				if (Self.Perso.x + Self.Map.x < this.mapObstacles.obstacles[i].x + this.mapObstacles.obstacles[i].width &&
+					Self.Perso.x + Self.Map.x + Self.Perso.width > this.mapObstacles.obstacles[i].x &&
+					Self.Perso.y - this.colBorder < this.mapObstacles.obstacles[i].y + this.mapObstacles.obstacles[i].height &&
+					Self.Perso.y > this.mapObstacles.obstacles[i].y + this.mapObstacles.obstacles[i].height)
+				{					
+		    		console.log("collision détectée bas");
+				}
 			}
 		}
 	}
