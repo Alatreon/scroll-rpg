@@ -57,13 +57,13 @@ Perso.prototype =
 
 				self.hautBas = false;
 			}
-			if( self.hautBas == false && self.jumpPos < self.JumpSize*2 )
+			if( self.hautBas == false && self.y<=Self.Map.floorVal )
 			{
 				self.jumpanim=0;
 				
 				self.y += self.vy;
 			}
-			if( self.hautBas == false && self.jumpPos == self.JumpSize*2 )
+			if( self.hautBas == false && self.y>=Self.Map.floorVal  )
 			{
 				self.jumpanim= 0;
 				self.hautBas = true;
@@ -77,14 +77,12 @@ Perso.prototype =
 	},
 	right : function () 
 	{
-		console.log('R'+this.vx)
 		this.x += this.vx;
 		this.leftright=0;
 		this.moveAnim();
 	},
 	left : function () 
 	{
-		console.log('L'+this.vx)
 		this.x -= this.vx;
 		this.leftright=1344;
 		this.moveAnim();

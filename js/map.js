@@ -72,6 +72,8 @@ Map.prototype=
 	{
 		this.colBorderX=4/*Self.Perso.vx+1*/;
 		this.colBorderY=3/*Self.Perso.vy+1*/;
+		this.floorVal=472;
+		// Self.Perso.JumpSize=2;
 
 		this.unBlockX();
 
@@ -125,8 +127,9 @@ Map.prototype=
 					Self.Perso.x + Self.Map.x + Self.Perso.width > this.mapObstacles.obstacles[i].x &&
 					Self.Perso.y - this.colBorderY < this.mapObstacles.obstacles[i].y + this.mapObstacles.obstacles[i].height &&
 					Self.Perso.y > this.mapObstacles.obstacles[i].y + this.mapObstacles.obstacles[i].height)
-				{					
+				{	
 		    		console.log("collision détectée bas");
+					// Self.Perso.JumpSize=((this.mapObstacles.obstacles[i].y+this.mapObstacles.obstacles[i].height-Self.Perso.x)*(-1))/4;
 				}
 			}
 		}
