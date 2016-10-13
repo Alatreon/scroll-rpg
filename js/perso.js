@@ -65,8 +65,7 @@ Perso.prototype =
 			}
 			if( self.hautBas == false && self.jumpPos == self.JumpSize*2 )
 			{
-				self.jumpanim=0;
-
+				self.jumpanim= 0;
 				self.hautBas = true;
 				self.jumpPos = 0;
 				self.y=Self.Map.floorVal;
@@ -76,14 +75,16 @@ Perso.prototype =
 		},4);
 
 	},
-	left : function () 
+	right : function () 
 	{
+		console.log('R'+this.vx)
 		this.x += this.vx;
 		this.leftright=0;
 		this.moveAnim();
 	},
-	right : function () 
+	left : function () 
 	{
+		console.log('L'+this.vx)
 		this.x -= this.vx;
 		this.leftright=1344;
 		this.moveAnim();

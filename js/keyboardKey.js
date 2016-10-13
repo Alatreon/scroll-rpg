@@ -12,6 +12,7 @@ KeyboardKey.prototype=
 	actionKeys : function () 
 	{
 		var self=this;
+		
 		document.addEventListener('keydown', function(evt)
 		{
 			self.keyDown(evt);
@@ -47,9 +48,9 @@ KeyboardKey.prototype=
 					this.heroMoveRightInter = setInterval(function()
 					{
 						Self.Map.checkObstacle();
-						Self.Perso.left();
-						Self.Map.left();
-						/*Self.drawAll();*/
+						Self.Perso.right();
+						Self.Map.right();
+
 					},10);
 				}
 			break;
@@ -60,9 +61,9 @@ KeyboardKey.prototype=
 					this.heroMoveLeftInter = setInterval(function()
 					{
 						Self.Map.checkObstacle();
-						Self.Perso.right();	
-						Self.Map.right();
-						/*Self.drawAll();*/
+						Self.Perso.left();	
+						Self.Map.left();
+
 					},10);
 				}
 			break;
