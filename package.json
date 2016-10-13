@@ -1,0 +1,9 @@
+{
+  "name": "scroll-rpg",
+  "main": "server.js",
+  "version" : "0.1.0",
+  "dependencies": {
+    "socket.io": "*",
+    "express": "*"
+  }
+}
