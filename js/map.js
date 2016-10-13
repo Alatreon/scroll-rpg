@@ -129,7 +129,7 @@ Map.prototype=
 					Self.Perso.y > this.mapObstacles.obstacles[i].y + this.mapObstacles.obstacles[i].height)
 				{	
 		    		console.log("collision détectée bas");
-					// Self.Perso.JumpSize=((this.mapObstacles.obstacles[i].y+this.mapObstacles.obstacles[i].height-Self.Perso.x)*(-1))/4;
+					Self.Perso.hautBas=false;
 				}
 			}
 		}
