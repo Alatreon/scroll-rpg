@@ -14,10 +14,12 @@ function Map ()
 	//Elements de la map
 	this.mapObstacles={
 		obstacles:[
-			{width:32, height:32, x:600, y:602},
-			// {width:32*3, height:32, x:200, y:500},
+			{width:32, height:32, x:650, y:400},
+			{width:32*3, height:32, x:200, y:500},
+			{width:32*3, height:32, x:200, y:200},
+			{width:32*3, height:32, x:400, y:350},
 			{width:512, height:32, x:1640, y:300},
-			{width:128, height:32, x:64*15, y:437},
+			{width:128, height:32, x:64*15, y:450},
 			{width:32*5, height:32, x:64*20, y:64*5},
 			{width:32*2, height:32, x:64*35, y:500},
 			{width:32*2, height:32, x:600, y:100}
@@ -74,23 +76,75 @@ Map.prototype=
 		this.colBorderY=3/*Self.Perso.vy+1*/;
 		this.floorVal=472;
 		// Self.Perso.JumpSize=2;
+		if(!Self.Perso.surUnObstacle || Self.Perso.surUnObstacle && !Self.KeyboardKey.heroMoveJumpBool)
+		{
+			Self.Perso.surUnObstacle=false;
+		}
 
+		Self.Perso.surUnObstacle2=false;
+		
 		this.unBlockX();
 
 		for(var i=0; i<this.mapObstacles.obstacles.length; i++)
 		{
-			if (Self.Perso.x + Self.Map.x - this.colBorderX < this.mapObstacles.obstacles[i].x + this.mapObstacles.obstacles[i].width &&
+				
+			/*Si la collision est a guche de l'obstacle*/
+			if (Self.Perso.x + Self.Map.x + Self.Perso.width < this.mapObstacles.obstacles[i].x &&
 				Self.Perso.x + Self.Map.x + Self.Perso.width + this.colBorderX > this.mapObstacles.obstacles[i].x &&
-				Self.Perso.y - this.colBorderY < this.mapObstacles.obstacles[i].y + this.mapObstacles.obstacles[i].height &&
+				Self.Perso.y < this.mapObstacles.obstacles[i].y + this.mapObstacles.obstacles[i].height &&
+				Self.Perso.height + Self.Perso.y > this.mapObstacles.obstacles[i].y)
+			{
+	    		if(Self.Perso.leftright==0)
+	    		{
+					this.blockX();	    		
+				}	
+	    		if(Self.Perso.leftright==1344)
+	    		{	
+					this.unBlockX();
+				}	
+			}
+			/*Si la collision est a droite de l'obstacle*/
+			else if (Self.Perso.x + Self.Map.x - this.colBorderX < this.mapObstacles.obstacles[i].x + this.mapObstacles.obstacles[i].width &&
+				Self.Perso.x + Self.Map.x > this.mapObstacles.obstacles[i].x + this.mapObstacles.obstacles[i].width &&
+				Self.Perso.y < this.mapObstacles.obstacles[i].y + this.mapObstacles.obstacles[i].height &&
+				Self.Perso.height + Self.Perso.y > this.mapObstacles.obstacles[i].y)
+			{
+	    		if(Self.Perso.leftright==1344)
+	    		{	
+					this.blockX();
+				}	
+	    		if(Self.Perso.leftright==0)
+	    		{	
+					this.unBlockX();
+				}			
+			}
+			/*Si la collision est en haut de l'obstacle*/
+			else if (Self.Perso.x + Self.Map.x < this.mapObstacles.obstacles[i].x + this.mapObstacles.obstacles[i].width &&
+				Self.Perso.x + Self.Map.x + Self.Perso.width > this.mapObstacles.obstacles[i].x &&
+				Self.Perso.y + Self.Perso.height < this.mapObstacles.obstacles[i].y &&
 				Self.Perso.height + Self.Perso.y + this.colBorderY > this.mapObstacles.obstacles[i].y)
 			{
-				
-				if (Self.Perso.x + Self.Map.x + Self.Perso.width < this.mapObstacles.obstacles[i].x &&
-					Self.Perso.x + Self.Map.x + Self.Perso.width + this.colBorderX > this.mapObstacles.obstacles[i].x &&
+				Self.Perso.surUnObstacle=true;
+				Self.Perso.surUnObstacle2=true;
+				this.floorVal=(this.mapObstacles.obstacles[i].y-Self.Perso.height)-this.colBorderY/2;
+			}
+			/*Si la collision est en bas de l'obstacle*/
+			else if (Self.Perso.x + Self.Map.x < this.mapObstacles.obstacles[i].x + this.mapObstacles.obstacles[i].width &&
+				Self.Perso.x + Self.Map.x + Self.Perso.width > this.mapObstacles.obstacles[i].x &&
+				Self.Perso.y - this.colBorderY < this.mapObstacles.obstacles[i].y + this.mapObstacles.obstacles[i].height &&
+				Self.Perso.y > this.mapObstacles.obstacles[i].y + this.mapObstacles.obstacles[i].height)
+			{
+				Self.Perso.hautBas=false;
+			}
+			/*Si la collision est dans un des coins de l'obstacle (Traitements provisoires)*/
+			else if (Self.Perso.x + Self.Map.x < this.mapObstacles.obstacles[i].x + this.mapObstacles.obstacles[i].width &&
+					Self.Perso.x + Self.Map.x + Self.Perso.width > this.mapObstacles.obstacles[i].x &&
 					Self.Perso.y < this.mapObstacles.obstacles[i].y + this.mapObstacles.obstacles[i].height &&
 					Self.Perso.height + Self.Perso.y > this.mapObstacles.obstacles[i].y)
+			{
+				if((Self.Perso.x + Self.Map.x + Self.Perso.width) < ( this.mapObstacles.obstacles[i].x + this.mapObstacles.obstacles[i].width/2) && 
+				   (Self.Perso.x + Self.Map.x) < ( this.mapObstacles.obstacles[i].x + this.mapObstacles.obstacles[i].width/2))
 				{
-		    		console.log("collision détectée gauche");
 		    		if(Self.Perso.leftright==0)
 		    		{
 						this.blockX();	    		
@@ -100,38 +154,30 @@ Map.prototype=
 						this.unBlockX();
 					}	
 				}
-				else if (Self.Perso.x + Self.Map.x - this.colBorderX < this.mapObstacles.obstacles[i].x + this.mapObstacles.obstacles[i].width &&
-					Self.Perso.x + Self.Map.x > this.mapObstacles.obstacles[i].x + this.mapObstacles.obstacles[i].width &&
-					Self.Perso.y < this.mapObstacles.obstacles[i].y + this.mapObstacles.obstacles[i].height &&
-					Self.Perso.height + Self.Perso.y > this.mapObstacles.obstacles[i].y)
-				{
-		    		console.log("collision détectée droite");
-		    		if(Self.Perso.leftright==1344)
+				else if((Self.Perso.x + Self.Map.x + Self.Perso.width) > ( this.mapObstacles.obstacles[i].x + this.mapObstacles.obstacles[i].width/2) &&
+						(Self.Perso.x + Self.Map.x) > ( this.mapObstacles.obstacles[i].x + this.mapObstacles.obstacles[i].width/2))
+				{  
+					if(Self.Perso.leftright==1344)
 		    		{	
 						this.blockX();
 					}	
 		    		if(Self.Perso.leftright==0)
 		    		{	
 						this.unBlockX();
-					}			
-				}
-				else if (Self.Perso.x + Self.Map.x < this.mapObstacles.obstacles[i].x + this.mapObstacles.obstacles[i].width &&
-					Self.Perso.x + Self.Map.x + Self.Perso.width > this.mapObstacles.obstacles[i].x &&
-					Self.Perso.y + Self.Perso.height < this.mapObstacles.obstacles[i].y &&
-					Self.Perso.height + Self.Perso.y + this.colBorderY > this.mapObstacles.obstacles[i].y)
-				{
-					this.floorVal=this.mapObstacles.obstacles[i].y-Self.Perso.height;
-		    		console.log("collision détectée haut");
-				}
-				else if (Self.Perso.x + Self.Map.x < this.mapObstacles.obstacles[i].x + this.mapObstacles.obstacles[i].width &&
-					Self.Perso.x + Self.Map.x + Self.Perso.width > this.mapObstacles.obstacles[i].x &&
-					Self.Perso.y - this.colBorderY < this.mapObstacles.obstacles[i].y + this.mapObstacles.obstacles[i].height &&
-					Self.Perso.y > this.mapObstacles.obstacles[i].y + this.mapObstacles.obstacles[i].height)
-				{	
-		    		console.log("collision détectée bas");
-					Self.Perso.hautBas=false;
+					}
 				}
 			}
+		}
+		
+		if(Self.Perso.surUnObstacle && !Self.Perso.surUnObstacle2)
+		{
+			Self.Perso.surUnObstacle=false;
+			Self.Perso.hautBas=false;
+
+			Self.Perso.jump(function(){
+				Self.KeyboardKey.heroMoveJumpBool=true;
+				clearInterval(self.heroMoveJumpInter);
+			});
 		}
 	},
 	blockX : function ()

@@ -24,6 +24,7 @@ function Perso ()
 	this.JumpSize = 86;
 	this.jumpPos = 0;
 	this.hautBas = true;
+	this.surUnObstacle=false;
 
 }
 Perso.prototype = 
