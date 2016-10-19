@@ -32,6 +32,8 @@ Main.prototype=
 
 			Self.Map.setBackground();
 
+			Self.drawOtherPlayer();
+
 			Self.Perso.draw(
 				Self.LoadImage.loadedImgList[1],
 				Self.Perso.jumpanim,
@@ -43,13 +45,13 @@ Main.prototype=
 				Self.Perso.x,
 				Self.Perso.y,
 				Self.Perso.width,
-				Self.Perso.height
+				Self.Perso.height,
+				Self.Perso.attackAnim
 			);
 
-			Self.drawOtherPlayer();
+			Self.Map.createObstacle();
 
-			Self.Map.createObstacle();		
-		},10);
+		},15);
 	},
 	drawOtherPlayer : function ()
 	{

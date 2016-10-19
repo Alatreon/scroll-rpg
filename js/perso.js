@@ -5,9 +5,9 @@ function Perso ()
 	this.y = Self.Map.floorVal;
 
 	/*Vitesse de Perso*/
-	/*deplacement*/
+	/* -deplacement*/
 	this.vx = 3;
-	/*saut*/
+	/* -saut*/
 	this.vy = 2;
 
 	/*Details visuels de Perso*/
@@ -25,13 +25,32 @@ function Perso ()
 	this.jumpPos = 0;
 	this.hautBas = true;
 	this.surUnObstacle=false;
+	/*Attack*/
+	this.attackAnim=false;
 
 }
 Perso.prototype = 
 {
-	draw : function (img,jumpanim,leftright,leftrightAnim,topbotAnim,width,height,x,y,width,height)
+	draw : function (img,jumpanim,leftright,leftrightAnim,topbotAnim,width,height,x,y,width,height,attack)
 	{	
 		Self.ctx.drawImage(img,jumpanim+leftright+leftrightAnim,topbotAnim,width,height,x,y,width,height);
+		Self.Perso.drawAttack(attack);
+	},
+	drawAttack : function (attack) 
+	{
+		if(attack)
+		{
+			Self.ctx.beginPath();
+
+			Self.ctx.moveTo(this.x, this.y); 
+			Self.ctx.lineTo(this.x+100, this.y+150);
+			Self.ctx.moveTo(this.x+100, this.y); 
+			Self.ctx.lineTo(this.x, this.y+150);
+
+			Self.ctx.closePath();
+
+			Self.ctx.stroke();
+		}
 	},
 	jump : function (callback) 
 	{
@@ -46,25 +65,25 @@ Perso.prototype =
 
 			self.jumpPos+=1;
 
-			if( self.hautBas == true && self.jumpPos < self.JumpSize )
+			if( self.hautBas && self.jumpPos < self.JumpSize )
 			{
 				self.jumpanim=320;
 
 				self.y -= self.vy;
 			}
-			if( self.hautBas == true && self.jumpPos == self.JumpSize )
+			if( self.hautBas && self.jumpPos == self.JumpSize )
 			{
 				self.jumpanim=0;
 
 				self.hautBas = false;
 			}
-			if( self.hautBas == false && self.y<=Self.Map.floorVal )
+			if( !self.hautBas && self.y<=Self.Map.floorVal)
 			{
 				self.jumpanim=0;
 				
 				self.y += self.vy;
 			}
-			if( self.hautBas == false && self.y>=Self.Map.floorVal  )
+			if( !self.hautBas && self.y>=Self.Map.floorVal)
 			{
 				self.jumpanim= 0;
 				self.hautBas = true;
@@ -87,6 +106,24 @@ Perso.prototype =
 		this.x -= this.vx;
 		this.leftright=1344;
 		this.moveAnim();
+	},
+	attack : function (callback) 
+	{
+		self=this;
+		var i = 0;
+		Self.KeyboardKey.heroAttackInter = setInterval(function()
+		{
+			self.attackAnim=true;
+			i+=1;
+			console.log(i+'eeeezeerzefzefzefze');
+
+			if(i>=50)
+			{
+				self.attackAnim=false;
+				callback();
+			}
+
+		},10);
 	},
 	stop : function (evt) 
 	{

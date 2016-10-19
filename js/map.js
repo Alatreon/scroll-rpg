@@ -14,12 +14,12 @@ function Map ()
 	//Elements de la map
 	this.mapObstacles={
 		obstacles:[
-			{width:32, height:32, x:650, y:400},
+			{width:32, height:32, x:750, y:400},
 			{width:32*3, height:32, x:200, y:500},
 			{width:32*3, height:32, x:200, y:200},
 			{width:32*3, height:32, x:400, y:350},
 			{width:512, height:32, x:1640, y:300},
-			{width:128, height:32, x:64*15, y:450},
+			{width:128, height:32, x:64*16, y:450},
 			{width:32*5, height:32, x:64*20, y:64*5},
 			{width:32*2, height:32, x:64*35, y:500},
 			{width:32*2, height:32, x:600, y:100}
@@ -168,11 +168,12 @@ Map.prototype=
 				}
 			}
 		}
-		
+
 		if(Self.Perso.surUnObstacle && !Self.Perso.surUnObstacle2)
 		{
 			Self.Perso.surUnObstacle=false;
 			Self.Perso.hautBas=false;
+
 
 			Self.Perso.jump(function(){
 				Self.KeyboardKey.heroMoveJumpBool=true;

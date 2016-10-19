@@ -6,6 +6,7 @@ function KeyboardKey ()
 	this.heroMoveLeftBool=true;
 	this.heroMoveRightBool=true;
 	this.heroMoveJumpBool=true;
+	this.heroAttackBool=true;
 }
 KeyboardKey.prototype=
 {
@@ -65,6 +66,16 @@ KeyboardKey.prototype=
 						Self.Map.left();
 
 					},10);
+				}
+			break;
+			case 32:
+				if(evt.keyCode==32 && this.heroAttackBool)
+				{
+					this.heroAttackBool = false;
+					Self.Perso.attack(function(){
+					Self.KeyboardKey.heroAttackBool = true;
+						clearInterval(Self.KeyboardKey.heroAttackInter);
+					});
 				}
 			break;
 		}
