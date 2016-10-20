@@ -3,7 +3,8 @@ function LoadImage ()
 	this.UrlImgList=[
 		Self.addrServ+":8000/img/backgroundmax.png", 
 		Self.addrServ+":8000/img/mariosprite.png",
-		Self.addrServ+":8000/img/brick.png"
+		Self.addrServ+":8000/img/brick.png",
+		Self.addrServ+":8000/img/weaponsprite.png"
 	];
 	this.loadedImgList=[];
 	this.numberImgLoaded=0;

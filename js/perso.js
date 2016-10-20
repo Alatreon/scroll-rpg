@@ -14,6 +14,10 @@ function Perso ()
 	this.width = 64;
 	this.height = 128;
 
+	/*Details visuels de l'arme de Perso*/
+	this.weaponWidth = 132;
+	this.weaponHeight = 144;
+
 	/*animation*/
 	this.jumpanim=0;
 	this.leftright=0;
@@ -25,6 +29,7 @@ function Perso ()
 	this.jumpPos = 0;
 	this.hautBas = true;
 	this.surUnObstacle=false;
+
 	/*Attack*/
 	this.attackAnim=false;
 
@@ -32,7 +37,7 @@ function Perso ()
 Perso.prototype = 
 {
 	draw : function (img,jumpanim,leftright,leftrightAnim,topbotAnim,width,height,x,y,width,height,attack)
-	{	
+	{
 		Self.ctx.drawImage(img,jumpanim+leftright+leftrightAnim,topbotAnim,width,height,x,y,width,height);
 		Self.Perso.drawAttack(attack);
 	},
@@ -40,16 +45,18 @@ Perso.prototype =
 	{
 		if(attack)
 		{
-			Self.ctx.beginPath();
+			Self.ctx.drawImage(
+				Self.LoadImage.loadedImgList[3],
+				396+132,/*Position horizontale du sprite*/
+				0,/*Position verticale du sprite*/
+				this.weaponWidth,
+				this.weaponHeight,
+				Self.Perso.x,
+				Self.Perso.y-50,
+				this.weaponWidth,
+				this.weaponHeight
+			);
 
-			Self.ctx.moveTo(this.x, this.y); 
-			Self.ctx.lineTo(this.x+100, this.y+150);
-			Self.ctx.moveTo(this.x+100, this.y); 
-			Self.ctx.lineTo(this.x, this.y+150);
-
-			Self.ctx.closePath();
-
-			Self.ctx.stroke();
 		}
 	},
 	jump : function (callback) 
