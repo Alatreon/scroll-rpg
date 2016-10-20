@@ -20,9 +20,12 @@ function Perso ()
 
 	/*animation*/
 	this.jumpanim=0;
+	this.leftrightBool=true;
 	this.leftright=0;
 	this.leftrightAnim=0;
 	this.incrMoveAnim=0;
+	this.persoAnimVal=0;
+	this.persoAnimStop=false;
 
 	/*Saut*/
 	this.JumpSize = 86;
@@ -36,9 +39,9 @@ function Perso ()
 }
 Perso.prototype = 
 {
-	draw : function (img,jumpanim,leftright,leftrightAnim,topbotAnim,width,height,x,y,width,height,attack)
+	draw : function (img,persoAnimVal,topbotAnim,width,height,x,y,width,height,attack)
 	{
-		Self.ctx.drawImage(img,jumpanim+leftright+leftrightAnim,topbotAnim,width,height,x,y,width,height);
+		Self.ctx.drawImage(img,persoAnimVal,topbotAnim,width,height,x,y,width,height);
 		Self.Perso.drawAttack(attack);
 	},
 	drawAttack : function (attack) 
@@ -62,9 +65,6 @@ Perso.prototype =
 	jump : function (callback) 
 	{
 		self=this
-
-		/*animation du saut*/
-		this.leftrightAnim=0;
 		
 		this.heroMoveJumpInter = setInterval(function()
 		{
@@ -74,25 +74,25 @@ Perso.prototype =
 
 			if( self.hautBas && self.jumpPos < self.JumpSize )
 			{
-				self.jumpanim=320;
+				self.moveAnim();
 
 				self.y -= self.vy;
 			}
 			if( self.hautBas && self.jumpPos == self.JumpSize )
 			{
-				self.jumpanim=0;
+				self.moveAnim();
 
 				self.hautBas = false;
 			}
 			if( !self.hautBas && self.y<=Self.Map.floorVal)
 			{
-				self.jumpanim=0;
+				self.moveAnim();
 				
 				self.y += self.vy;
 			}
 			if( !self.hautBas && self.y>=Self.Map.floorVal)
 			{
-				self.jumpanim= 0;
+				self.moveAnim();
 				self.hautBas = true;
 				self.jumpPos = 0;
 				self.y=Self.Map.floorVal;
@@ -104,15 +104,15 @@ Perso.prototype =
 	},
 	right : function () 
 	{
-		this.x += this.vx;
-		this.leftright=0;
 		this.moveAnim();
+		this.leftrightBool=true;
+		this.x += this.vx;
 	},
 	left : function () 
 	{
-		this.x -= this.vx;
-		this.leftright=1344;
 		this.moveAnim();
+		this.x -= this.vx;
+		this.leftrightBool=false;
 	},
 	attack : function (callback) 
 	{
@@ -134,23 +134,55 @@ Perso.prototype =
 	},
 	stop : function (evt) 
 	{
-		this.leftrightAnim=0;
+		this.persoAnimStop=true;
+		this.moveAnim();
+		this.persoAnimStop=false;
 	},
 	moveAnim : function ()
 	{
+		if(this.leftrightBool)
+		{
+			this.leftright=0;
+		}
+		else
+		{
+			this.leftright=1344;
+		}
+
 		if(Self.KeyboardKey.heroMoveJumpBool)
 		{
-			this.incrMoveAnim+=1;
-
-			if(this.incrMoveAnim>7)
+			if(!this.persoAnimStop)
 			{
-				this.incrMoveAnim=0;
-
-				this.leftrightAnim+=64;
-
-				if(this.leftrightAnim>192){this.leftrightAnim=64;}
-
+				this.incrMoveAnim+=1;
+	
+				if(this.incrMoveAnim>7)
+				{
+					this.incrMoveAnim=0;
+	
+					this.leftrightAnim+=64;
+	
+					if(this.leftrightAnim>192){this.leftrightAnim=64;}
+	
+				}
 			}
-		}	
+			else
+			{
+				this.leftrightAnim=0;
+			}
+		}
+		else if(!Self.KeyboardKey.heroMoveJumpBool)
+		{
+			this.leftrightAnim=0;
+
+			if( self.hautBas)
+			{
+				self.jumpanim=320;
+			}
+			if( !self.hautBas)
+			{
+				self.jumpanim= 0;
+			}
+		}
+		this.persoAnimVal=this.jumpanim+this.leftright+this.leftrightAnim;
 	}
 }

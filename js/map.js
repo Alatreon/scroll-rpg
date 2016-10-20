@@ -94,11 +94,11 @@ Map.prototype=
 				Self.Perso.y < this.mapObstacles.obstacles[i].y + this.mapObstacles.obstacles[i].height &&
 				Self.Perso.height + Self.Perso.y > this.mapObstacles.obstacles[i].y)
 			{
-	    		if(Self.Perso.leftright==0)
+	    		if(Self.Perso.leftrightBool)
 	    		{
-					this.blockX();	    		
+					this.blockX();
 				}	
-	    		if(Self.Perso.leftright==1344)
+	    		else
 	    		{	
 					this.unBlockX();
 				}	
@@ -109,13 +109,13 @@ Map.prototype=
 				Self.Perso.y < this.mapObstacles.obstacles[i].y + this.mapObstacles.obstacles[i].height &&
 				Self.Perso.height + Self.Perso.y > this.mapObstacles.obstacles[i].y)
 			{
-	    		if(Self.Perso.leftright==1344)
-	    		{	
-					this.blockX();
-				}	
-	    		if(Self.Perso.leftright==0)
+	    		if(Self.Perso.leftrightBool)
 	    		{	
 					this.unBlockX();
+				}	
+	    		else
+	    		{	
+					this.blockX();
 				}			
 			}
 			/*Si la collision est en haut de l'obstacle*/
@@ -145,25 +145,25 @@ Map.prototype=
 				if((Self.Perso.x + Self.Map.x + Self.Perso.width) < ( this.mapObstacles.obstacles[i].x + this.mapObstacles.obstacles[i].width/2) && 
 				   (Self.Perso.x + Self.Map.x) < ( this.mapObstacles.obstacles[i].x + this.mapObstacles.obstacles[i].width/2))
 				{
-		    		if(Self.Perso.leftright==0)
+		    		if(Self.Perso.leftrightBool)
 		    		{
 						this.blockX();	    		
 					}	
-		    		if(Self.Perso.leftright==1344)
+		    		else
 		    		{	
 						this.unBlockX();
 					}	
 				}
 				else if((Self.Perso.x + Self.Map.x + Self.Perso.width) > ( this.mapObstacles.obstacles[i].x + this.mapObstacles.obstacles[i].width/2) &&
 						(Self.Perso.x + Self.Map.x) > ( this.mapObstacles.obstacles[i].x + this.mapObstacles.obstacles[i].width/2))
-				{  
-					if(Self.Perso.leftright==1344)
-		    		{	
-						this.blockX();
-					}	
-		    		if(Self.Perso.leftright==0)
+				{ 	
+		    		if(Self.Perso.leftrightBool)
 		    		{	
 						this.unBlockX();
+					} 
+					else
+		    		{	
+						this.blockX();
 					}
 				}
 			}
@@ -173,7 +173,8 @@ Map.prototype=
 		{
 			Self.Perso.surUnObstacle=false;
 			Self.Perso.hautBas=false;
-
+				
+			Self.KeyboardKey.heroMoveJumpBool=false;
 
 			Self.Perso.jump(function(){
 				Self.KeyboardKey.heroMoveJumpBool=true;

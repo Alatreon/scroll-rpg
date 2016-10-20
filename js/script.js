@@ -36,9 +36,7 @@ Main.prototype=
 
 			Self.Perso.draw(
 				Self.LoadImage.loadedImgList[1],
-				Self.Perso.jumpanim,
-				Self.Perso.leftright,
-				Self.Perso.leftrightAnim,
+				Self.Perso.persoAnimVal,
 				0,
 				Self.Perso.width,
 				Self.Perso.height,
@@ -62,7 +60,7 @@ Main.prototype=
 				{
 					Self.ctx.drawImage(
 						Self.LoadImage.loadedImgList[1],
-						Self.Partie.partie.players[i].perso.jumpanim+Self.Partie.partie.players[i].perso.leftright+Self.Partie.partie.players[i].perso.leftrightAnim,
+						Self.Partie.partie.players[i].perso.persoAnimVal,
 						0,
 						Self.Partie.partie.players[i].perso.width,
 						Self.Partie.partie.players[i].perso.height,
