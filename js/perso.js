@@ -16,7 +16,7 @@ function Perso ()
 
 	/*Details visuels de l'arme de Perso*/
 	this.weaponWidth = 132;
-	this.weaponHeight = 144;
+	this.weaponHeight = 192;
 
 	/*animation*/
 	this.jumpanim=0;
@@ -55,8 +55,8 @@ Perso.prototype =
 				0,/*Position verticale du sprite*/
 				this.weaponWidth,
 				this.weaponHeight,
-				Self.Perso.x-20,
-				Self.Perso.y-70,
+				Self.Perso.x,
+				Self.Perso.y-65,
 				this.weaponWidth,
 				this.weaponHeight
 			);
@@ -127,15 +127,13 @@ Perso.prototype =
 
 			self.incrAttackAnim+=1;
 
-			console.log(self.incrAttackAnim+'eeeezeerzefzefzefze');
-
 			if(self.incrAttackAnim>=40)
 			{
 				self.attackAnim=false;
 				callback();
 			}
 
-		},20);
+		},10);
 	},
 	stop : function (evt) 
 	{
@@ -156,17 +154,29 @@ Perso.prototype =
 		if(!Self.KeyboardKey.heroAttackBool)
 		{
 			this.jumpanim=0;
-			this.leftrightAnim=320;
-			this.weaponAnimVal=396+132;
 
-			if(this.incrAttackAnim<10)
+			if(this.incrAttackAnim<8)
 			{
-				this.leftrightAnim=0;
-				this.weaponAnimVal=396+132;				
+				this.leftrightAnim=320;
+
+				this.weaponAnimVal=0;				
 			}
 			else if(this.incrAttackAnim<20)
 			{
-				this.leftrightAnim=192-64;
+				this.leftrightAnim=64;
+
+				this.weaponAnimVal=132;				
+			}
+			else if(this.incrAttackAnim<30)
+			{
+				this.leftrightAnim=64;
+
+				this.weaponAnimVal=132+132;				
+			}
+			else if(this.incrAttackAnim<39)
+			{
+				this.leftrightAnim=64;
+
 				this.weaponAnimVal=396;				
 			}
 			else if(this.incrAttackAnim>=39)
