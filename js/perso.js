@@ -23,6 +23,11 @@ function Perso ()
 	this.leftrightBool=true;
 	this.leftright=0;
 	this.leftrightAnim=0;
+
+	this.leftrightWeapon=0;
+	this.leftrightWeaponX=0;
+	this.leftrightWeaponY=65;
+
 	this.incrMoveAnim=0;
 	this.persoAnimVal=0;
 	this.persoAnimStop=false;
@@ -35,15 +40,15 @@ function Perso ()
 
 	/*Attack*/
 	this.attackAnim=false;
+	this.weaponAnim=396+132;			
 	this.weaponAnimVal=396+132;
 
 }
 Perso.prototype = 
 {
-	draw : function (img,persoAnimVal,topbotAnim,width,height,x,y,width,height,attack)
+	draw : function (img,persoAnimVal,topbotAnim,width,height,x,y,width,height)
 	{
 		Self.ctx.drawImage(img,persoAnimVal,topbotAnim,width,height,x,y,width,height);
-		Self.Perso.drawAttack(attack);
 	},
 	drawAttack : function (attack) 
 	{
@@ -55,8 +60,8 @@ Perso.prototype =
 				0,/*Position verticale du sprite*/
 				this.weaponWidth,
 				this.weaponHeight,
-				Self.Perso.x,
-				Self.Perso.y-65,
+				Self.Perso.x-this.leftrightWeaponX,
+				Self.Perso.y-this.leftrightWeaponY,
 				this.weaponWidth,
 				this.weaponHeight
 			);
@@ -133,7 +138,7 @@ Perso.prototype =
 				callback();
 			}
 
-		},10);
+		},8);
 	},
 	stop : function (evt) 
 	{
@@ -146,11 +151,16 @@ Perso.prototype =
 		if(this.leftrightBool)
 		{
 			this.leftright=0;
+			this.leftrightWeapon=0;
+			this.leftrightWeaponX=0;
 		}
 		else
 		{
 			this.leftright=1344;
+			this.leftrightWeapon=132*4;
+			this.leftrightWeaponX=70;
 		}
+
 		if(!Self.KeyboardKey.heroAttackBool)
 		{
 			this.jumpanim=0;
@@ -159,31 +169,34 @@ Perso.prototype =
 			{
 				this.leftrightAnim=320;
 
-				this.weaponAnimVal=0;				
+				this.weaponAnim=0;				
 			}
 			else if(this.incrAttackAnim<20)
 			{
 				this.leftrightAnim=64;
 
-				this.weaponAnimVal=132;				
+				this.weaponAnim=132;				
 			}
 			else if(this.incrAttackAnim<30)
 			{
 				this.leftrightAnim=64;
 
-				this.weaponAnimVal=132+132;				
+				this.weaponAnim=132+132;				
 			}
 			else if(this.incrAttackAnim<39)
 			{
 				this.leftrightAnim=64;
 
-				this.weaponAnimVal=396;				
+				this.weaponAnim=396;			
 			}
 			else if(this.incrAttackAnim>=39)
 			{
-				this.leftrightAnim=0;				
+				this.leftrightAnim=0;			
 			}
+
+			this.weaponAnimVal=this.weaponAnim+this.leftrightWeapon;	
 		}
+
 		else if(Self.KeyboardKey.heroMoveJumpBool)
 		{
 			if(!this.persoAnimStop)

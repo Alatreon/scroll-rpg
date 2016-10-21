@@ -43,11 +43,12 @@ Main.prototype=
 				Self.Perso.x,
 				Self.Perso.y,
 				Self.Perso.width,
-				Self.Perso.height,
-				Self.Perso.attackAnim
+				Self.Perso.height
 			);
 
 			Self.Map.createObstacle();
+			
+			Self.Perso.drawAttack(Self.Perso.attackAnim);
 
 		},15);
 	},
