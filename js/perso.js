@@ -39,7 +39,7 @@ function Perso ()
 	this.surUnObstacle=false;
 
 	/*Attack*/
-	this.attackAnim=false;
+	this.attackBool=false;
 	this.weaponAnim=396+132;			
 	this.weaponAnimVal=396+132;
 
@@ -50,20 +50,20 @@ Perso.prototype =
 	{
 		Self.ctx.drawImage(img,persoAnimVal,topbotAnim,width,height,x,y,width,height);
 	},
-	drawAttack : function (attack) 
+	drawAttack : function (attack,img,weaponAnimVal,weaponAnimValVert,weaponWidth,weaponHeight,leftrightWeaponX,leftrightWeaponY) 
 	{
 		if(attack)
 		{
 			Self.ctx.drawImage(
-				Self.LoadImage.loadedImgList[3],
-				this.weaponAnimVal,/*Position horizontale du sprite*/
-				0,/*Position verticale du sprite*/
-				this.weaponWidth,
-				this.weaponHeight,
-				Self.Perso.x-this.leftrightWeaponX,
-				Self.Perso.y-this.leftrightWeaponY,
-				this.weaponWidth,
-				this.weaponHeight
+				img,
+				weaponAnimVal,/*Position horizontale du sprite*/
+				weaponAnimValVert,/*Position verticale du sprite*/
+				weaponWidth,
+				weaponHeight,
+				leftrightWeaponX,
+				leftrightWeaponY,
+				weaponWidth,
+				weaponHeight
 			);
 
 		}
@@ -128,13 +128,13 @@ Perso.prototype =
 		{
 			self.moveAnim();
 
-			self.attackAnim=true;
+			self.attackBool=true;
 
 			self.incrAttackAnim+=1;
 
 			if(self.incrAttackAnim>=40)
 			{
-				self.attackAnim=false;
+				self.attackBool=false;
 				callback();
 			}
 

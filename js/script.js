@@ -48,7 +48,15 @@ Main.prototype=
 
 			Self.Map.createObstacle();
 			
-			Self.Perso.drawAttack(Self.Perso.attackAnim);
+			Self.Perso.drawAttack(
+				Self.Perso.attackBool,
+				Self.LoadImage.loadedImgList[3],
+				Self.Perso.weaponAnimVal,/*Position horizontale du sprite*/
+				0,/*Position verticale du sprite*/
+				Self.Perso.weaponWidth,
+				Self.Perso.weaponHeight,
+				Self.Perso.x-Self.Perso.leftrightWeaponX,
+				Self.Perso.y-Self.Perso.leftrightWeaponY);
 
 		},15);
 	},
@@ -69,6 +77,16 @@ Main.prototype=
 						Self.Partie.partie.players[i].perso.y,
 						Self.Partie.partie.players[i].perso.width,
 						Self.Partie.partie.players[i].perso.height
+					);
+					Self.Perso.drawAttack(
+						Self.Partie.partie.players[i].perso.attackBool,
+						Self.LoadImage.loadedImgList[3],
+						Self.Partie.partie.players[i].perso.weaponAnimVal,/*Position horizontale du sprite*/
+						0,/*Position verticale du sprite*/
+						Self.Partie.partie.players[i].perso.weaponWidth,
+						Self.Partie.partie.players[i].perso.weaponHeight,
+						Self.Partie.partie.players[i].perso.x-Self.Partie.partie.players[i].perso.leftrightWeaponX,
+						Self.Partie.partie.players[i].perso.y-Self.Partie.partie.players[i].perso.leftrightWeaponY
 					);
 				}
 			}
