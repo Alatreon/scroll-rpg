@@ -171,13 +171,16 @@ Map.prototype=
 
 		if(Self.Perso.surUnObstacle && !Self.Perso.surUnObstacle2)
 		{
-			Self.Perso.surUnObstacle=false;
-			Self.Perso.hautBas=false;
-				
 			Self.KeyboardKey.heroMoveJumpBool=false;
 
+			Self.Perso.surUnObstacle=false;
+
+			Self.Perso.hautBas=false;
+
 			Self.Perso.jump(function(){
+
 				Self.KeyboardKey.heroMoveJumpBool=true;
+				
 				clearInterval(self.heroMoveJumpInter);
 			});
 		}

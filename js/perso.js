@@ -35,6 +35,7 @@ function Perso ()
 
 	/*Attack*/
 	this.attackAnim=false;
+	this.weaponAnimVal=396+132;
 
 }
 Perso.prototype = 
@@ -50,12 +51,12 @@ Perso.prototype =
 		{
 			Self.ctx.drawImage(
 				Self.LoadImage.loadedImgList[3],
-				396+132,/*Position horizontale du sprite*/
+				this.weaponAnimVal,/*Position horizontale du sprite*/
 				0,/*Position verticale du sprite*/
 				this.weaponWidth,
 				this.weaponHeight,
-				Self.Perso.x,
-				Self.Perso.y-50,
+				Self.Perso.x-20,
+				Self.Perso.y-70,
 				this.weaponWidth,
 				this.weaponHeight
 			);
@@ -104,33 +105,37 @@ Perso.prototype =
 	},
 	right : function () 
 	{
-		this.moveAnim();
 		this.leftrightBool=true;
+		this.moveAnim();
 		this.x += this.vx;
 	},
 	left : function () 
 	{
+		this.leftrightBool=false;
 		this.moveAnim();
 		this.x -= this.vx;
-		this.leftrightBool=false;
 	},
 	attack : function (callback) 
 	{
 		self=this;
-		var i = 0;
+		this.incrAttackAnim = 0;
 		Self.KeyboardKey.heroAttackInter = setInterval(function()
 		{
-			self.attackAnim=true;
-			i+=1;
-			console.log(i+'eeeezeerzefzefzefze');
+			self.moveAnim();
 
-			if(i>=50)
+			self.attackAnim=true;
+
+			self.incrAttackAnim+=1;
+
+			console.log(self.incrAttackAnim+'eeeezeerzefzefzefze');
+
+			if(self.incrAttackAnim>=40)
 			{
 				self.attackAnim=false;
 				callback();
 			}
 
-		},10);
+		},20);
 	},
 	stop : function (evt) 
 	{
@@ -148,8 +153,28 @@ Perso.prototype =
 		{
 			this.leftright=1344;
 		}
+		if(!Self.KeyboardKey.heroAttackBool)
+		{
+			this.jumpanim=0;
+			this.leftrightAnim=320;
+			this.weaponAnimVal=396+132;
 
-		if(Self.KeyboardKey.heroMoveJumpBool)
+			if(this.incrAttackAnim<10)
+			{
+				this.leftrightAnim=0;
+				this.weaponAnimVal=396+132;				
+			}
+			else if(this.incrAttackAnim<20)
+			{
+				this.leftrightAnim=192-64;
+				this.weaponAnimVal=396;				
+			}
+			else if(this.incrAttackAnim>=39)
+			{
+				this.leftrightAnim=0;				
+			}
+		}
+		else if(Self.KeyboardKey.heroMoveJumpBool)
 		{
 			if(!this.persoAnimStop)
 			{
