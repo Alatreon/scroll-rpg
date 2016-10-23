@@ -12,8 +12,6 @@ Partie.prototype=
 
 			Self.Partie.socketId=socketId;
 
-			Self.partie=partie;
-
 			Self.launchKey();
 
 			Self.drawAll();
@@ -61,14 +59,6 @@ Partie.prototype=
 	},
 	transaction : function ()
 	{
-		setInterval(function()
-		{
-			// if(Self.Perso.leftrightAnim!=0 || Self.Perso.jumpPos>0)
-			// {
-				Self.Partie.updatePerso();
-			// }
-			
-		},50);
-		
+		Self.Partie.updatePerso();		
 	}
 }

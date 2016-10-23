@@ -57,8 +57,12 @@ Main.prototype=
 				Self.Perso.weaponHeight,
 				Self.Perso.x-Self.Perso.leftrightWeaponX,
 				Self.Perso.y-Self.Perso.leftrightWeaponY);
+			
+			Self.Map.drawMonster();
 
-		},15);
+			Self.Partie.transaction();
+
+		},40);
 	},
 	drawOtherPlayer : function ()
 	{

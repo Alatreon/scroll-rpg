@@ -32,6 +32,11 @@ Map.prototype=
 	{
 		Self.ctx.drawImage(Self.LoadImage.loadedImgList[0],this.x,this.y,Self.c.width,Self.c.height,0,0,Self.c.width,Self.c.height);
 	},
+	drawMonster : function ()
+	{
+		console.log(Self.Partie.partie.monster.height);
+		// Self.ctx.drawImage(Self.LoadImage.loadedImgList[4],Self.Partie.partie.monster.height,this.y,Self.c.width,Self.c.height,0,0,Self.c.width,Self.c.height);
+	},
 	right : function () 
 	{
 		if(Self.Perso.x+Self.Perso.width>Self.c.width/2 && (Self.Perso.x+Self.Map.x) < this.width-Self.Perso.width-(Self.c.width/2))

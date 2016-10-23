@@ -4,7 +4,8 @@ function LoadImage ()
 		Self.addrServ+":8000/img/backgroundmax.png", 
 		Self.addrServ+":8000/img/mariosprite.png",
 		Self.addrServ+":8000/img/brick.png",
-		Self.addrServ+":8000/img/weaponsprite.png"
+		Self.addrServ+":8000/img/weaponsprite.png",
+		Self.addrServ+":8000/img/mobsprite.png"
 	];
 	this.loadedImgList=[];
 	this.numberImgLoaded=0;

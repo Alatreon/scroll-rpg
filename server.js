@@ -1,6 +1,7 @@
 var express = require('express');
 var http = require('http');
 var fs = require('fs');
+var monster = require('./js/modules/server_monsters/monster');
 var app = express();
 var port = process.env.PORT || 8000;
 
@@ -20,8 +21,9 @@ var server = http.createServer(app);
 
 var io = require('socket.io').listen(server);
 
-var partie = {players : []};
+var partie = {players : [], monster:monster.Monster()};
 
+monster.MonsterCons();
 
 io.sockets.on('connection', function (socket) {
 
@@ -45,9 +47,10 @@ io.sockets.on('connection', function (socket) {
 
     	console.log(partie.players.length);
 
+		partie.monster=monster.Monster();
+
 		for(var i = 0; i<partie.players.length; i++)
 		{
-    		// console.log(partie.players[i].perso.x);
 			if(partie.players[i].playerId == socket.id)
 			{
     			perso.x=perso.x+mappos;
