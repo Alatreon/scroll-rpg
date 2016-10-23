@@ -169,7 +169,7 @@ Map.prototype=
 			}
 		}
 
-		if(Self.Perso.surUnObstacle && !Self.Perso.surUnObstacle2)
+		if(Self.Perso.surUnObstacle && !Self.Perso.surUnObstacle2 && Self.KeyboardKey.heroMoveJumpBool)
 		{
 			Self.KeyboardKey.heroMoveJumpBool=false;
 

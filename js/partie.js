@@ -38,7 +38,22 @@ Partie.prototype=
 	},
 	sendPerso : function ()
 	{
-		Self.Partie.socket.emit('serv_perso_recept', Self.Perso, Self.Map.x);
+		var perso = 
+		{
+			persoAnimVal:Self.Perso.persoAnimVal,
+			width:Self.Perso.width,
+			height:Self.Perso.height,
+			x:Self.Perso.x,
+			y:Self.Perso.y,
+			attackBool:Self.Perso.attackBool,
+			weaponAnimVal:Self.Perso.weaponAnimVal,
+			weaponWidth:Self.Perso.weaponWidth,
+			weaponHeight:Self.Perso.weaponHeight,
+			leftrightWeaponX:Self.Perso.leftrightWeaponX,
+			leftrightWeaponY:Self.Perso.leftrightWeaponY
+		}
+
+		Self.Partie.socket.emit('serv_perso_recept', perso, Self.Map.x);
 	},
 	updatePerso : function ()
 	{

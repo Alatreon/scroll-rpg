@@ -85,7 +85,7 @@ Main.prototype=
 						0,/*Position verticale du sprite*/
 						Self.Partie.partie.players[i].perso.weaponWidth,
 						Self.Partie.partie.players[i].perso.weaponHeight,
-						Self.Partie.partie.players[i].perso.x-Self.Partie.partie.players[i].perso.leftrightWeaponX,
+						(Self.Partie.partie.players[i].perso.x-Self.Map.x)-Self.Partie.partie.players[i].perso.leftrightWeaponX,
 						Self.Partie.partie.players[i].perso.y-Self.Partie.partie.players[i].perso.leftrightWeaponY
 					);
 				}
