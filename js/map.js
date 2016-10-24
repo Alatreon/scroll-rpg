@@ -34,8 +34,16 @@ Map.prototype=
 	},
 	drawMonster : function ()
 	{
-		console.log(Self.Partie.partie.monster.height);
-		// Self.ctx.drawImage(Self.LoadImage.loadedImgList[4],Self.Partie.partie.monster.height,this.y,Self.c.width,Self.c.height,0,0,Self.c.width,Self.c.height);
+		Self.ctx.drawImage(
+				Self.LoadImage.loadedImgList[4],
+				Self.Partie.partie.monster.anim,
+				0,
+				Self.Partie.partie.monster.width,
+				Self.Partie.partie.monster.height,
+				Self.Partie.partie.monster.x-Self.Map.x,
+				Self.Partie.partie.monster.y,
+				Self.Partie.partie.monster.width,
+				Self.Partie.partie.monster.height);
 	},
 	right : function () 
 	{

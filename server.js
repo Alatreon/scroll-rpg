@@ -36,7 +36,7 @@ io.sockets.on('connection', function (socket) {
     	perso.x=perso.x+mappos;
 
 		partie.players.push({playerId : socket.id, perso : perso});
-
+		console.log(monster.Monster());
 		socket.emit('client_recept_partie', partie);
 
 		socket.broadcast.emit('client_recept_partie', partie);
@@ -59,7 +59,9 @@ io.sockets.on('connection', function (socket) {
     			
     			socket.broadcast.emit('client_recept_partie', partie);
 			}
-		}		
+		}
+
+		socket.emit('client_recept_partie', partie);		
     });
 
 	socket.on('disconnect', function() {
