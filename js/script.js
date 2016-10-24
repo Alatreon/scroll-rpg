@@ -12,6 +12,7 @@ function Main ()
 	this.Map = new Map;
 	this.Perso = new Perso;
 	this.Partie = new Partie;
+	this.Texts = new Texts;
 }
 Main.prototype=
 {
@@ -48,6 +49,8 @@ Main.prototype=
 
 			Self.Map.createObstacle();
 			
+			Self.Map.drawMonster();
+
 			Self.Perso.drawAttack(
 				Self.Perso.attackBool,
 				Self.LoadImage.loadedImgList[3],
@@ -58,11 +61,11 @@ Main.prototype=
 				Self.Perso.x-Self.Perso.leftrightWeaponX,
 				Self.Perso.y-Self.Perso.leftrightWeaponY);
 			
-			Self.Map.drawMonster();
+			Self.Texts.drawDmg();
 
 			Self.Partie.transaction();
 
-		},40);
+		},25);
 	},
 	drawOtherPlayer : function ()
 	{

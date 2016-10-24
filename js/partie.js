@@ -3,11 +3,14 @@ function Partie ()
 	this.socketId;
 	this.partie;
 	this.socket = io.connect(Self.addrServ+":8000");
+	this.dmgs=[];
 }
 Partie.prototype=
 {
 	connection : function ()
 	{
+		self=this;
+
 		Self.Partie.socket.on('client_connected', function(socketId, partie) {
 
 			Self.Partie.socketId=socketId;
@@ -21,6 +24,35 @@ Partie.prototype=
 			Self.Partie.socket.on('client_recept_partie', function(partie) {
 
 				Self.Partie.partie=partie;
+			});
+
+			Self.Partie.socket.on('client_recept_dmgs_monster', function(dmg) {
+						
+				if(dmg.socketId == Self.Partie.socketId)
+				{
+					dmg = 
+					{
+						dmg:dmg.dmg,
+						player:true,
+						positionY:0,
+						alpha:1.0,
+						incr:0
+					}
+				}
+				else
+				{
+					dmg = 
+					{
+						dmg:dmg.dmg,
+						player:false,
+						positionY:0,
+						alpha:1.0,
+						incr:0
+					}
+
+				}
+				
+				Self.Partie.dmgs.push(dmg);
 			});
 
 		});
@@ -56,6 +88,10 @@ Partie.prototype=
 	updatePerso : function ()
 	{
 		Self.Partie.socket.emit('serv_perso_update', Self.Perso, Self.Map.x);
+	},
+	persoAttack : function ()
+	{
+		Self.Partie.socket.emit('serv_perso_attack');
 	},
 	transaction : function ()
 	{

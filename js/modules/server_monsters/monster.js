@@ -1,8 +1,9 @@
-function Monster (width,height,x,y,anim)
+function Monster (life,width,height,x,y,anim)
 {
 	this.width=width;
 	this.height=height;
-	this.life=1000;
+	this.lifeMax=life;
+	this.life=life;
 	this.x=x;
 	this.y=y;
 	this.vx=3;
@@ -26,6 +27,8 @@ Monster.prototype =
 	{
 		var monster = 
 		{
+			life : Monster.life,
+			lifeMax : Monster.lifeMax,
 			width : Monster.width,
 			height : Monster.height,
 			x : Monster.x,
@@ -61,18 +64,24 @@ Monster.prototype =
 			Monster.anim=0;
 		}
 	},
-	takeDmg : function (dmg)
+	takeDmg : function (dmgMin,dmgMax)
 	{
+		var dmg = Math.floor(Math.random() * (dmgMax - dmgMin) + dmgMin);
+
 		Monster.life=Monster.life-dmg;
+
 		if(Monster.life<=0)
 		{
 			clearInterval(Monster.animInter);
+			Monster.life=0;
 			Monster.width=0;
 			Monster.height=0;
 		}
+		return dmg;
 	}
 }
-var Monster =  new Monster(64,128,0,472,0);
+var Monster =  new Monster(1000,64,64,0,472+64,0);
 
-exports.MonsterCons = Monster.startAll;
+exports.MonsterStart = Monster.startAll;
 exports.Monster = Monster.returnMonsterVal;
+exports.MonsterTakeDmg = Monster.takeDmg;

@@ -23,7 +23,7 @@ var io = require('socket.io').listen(server);
 
 var partie = {players : [], monster:monster.Monster()};
 
-monster.MonsterCons();
+monster.MonsterStart();
 
 io.sockets.on('connection', function (socket) {
 
@@ -62,6 +62,17 @@ io.sockets.on('connection', function (socket) {
 		}
 
 		socket.emit('client_recept_partie', partie);		
+    });
+
+    
+    socket.on('serv_perso_attack', function() {
+
+		var dmg = {dmg:monster.MonsterTakeDmg(10,20), socketId:socket.id};
+
+		socket.emit('client_recept_dmgs_monster',dmg);
+		socket.broadcast.emit('client_recept_dmgs_monster',dmg);
+
+    	console.log('ATTTTAAAAAAAAACK');
     });
 
 	socket.on('disconnect', function() {

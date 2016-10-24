@@ -42,6 +42,7 @@ function Perso ()
 	this.attackBool=false;
 	this.weaponAnim=396+132;			
 	this.weaponAnimVal=396+132;
+	this.checkAttackBool = true;
 
 }
 Perso.prototype = 
@@ -123,7 +124,10 @@ Perso.prototype =
 	attack : function (callback) 
 	{
 		self=this;
+
 		this.incrAttackAnim = 0;
+		this.checkAttackBool = true;
+
 		Self.KeyboardKey.heroAttackInter = setInterval(function()
 		{
 			self.moveAnim();
@@ -137,8 +141,22 @@ Perso.prototype =
 				self.attackBool=false;
 				callback();
 			}
+			self.checkAttack();
 
 		},8);
+	},
+	checkAttack : function ()
+	{
+		if ( Self.Partie.partie.monster.x-Self.Map.x < this.x-this.leftrightWeaponX + this.weaponWidth &&
+		   	 Self.Partie.partie.monster.x-Self.Map.x + Self.Partie.partie.monster.width > this.x-this.leftrightWeaponX &&
+		   	 Self.Partie.partie.monster.y < this.y-this.leftrightWeaponY + this.weaponHeight &&
+		   	 Self.Partie.partie.monster.height + Self.Partie.partie.monster.y > this.y-this.leftrightWeaponY &&
+			 this.checkAttackBool && Self.Partie.partie.monster.life>0)
+		{
+			this.checkAttackBool = false;
+			Self.Partie.persoAttack();
+		}
+
 	},
 	stop : function (evt) 
 	{

@@ -33,17 +33,23 @@ Map.prototype=
 		Self.ctx.drawImage(Self.LoadImage.loadedImgList[0],this.x,this.y,Self.c.width,Self.c.height,0,0,Self.c.width,Self.c.height);
 	},
 	drawMonster : function ()
-	{
-		Self.ctx.drawImage(
+	{	
+		if(Self.Partie.partie.monster.life>0)
+		{
+			Self.ctx.drawImage(
 				Self.LoadImage.loadedImgList[4],
 				Self.Partie.partie.monster.anim,
-				0,
+				64,
 				Self.Partie.partie.monster.width,
 				Self.Partie.partie.monster.height,
 				Self.Partie.partie.monster.x-Self.Map.x,
 				Self.Partie.partie.monster.y,
 				Self.Partie.partie.monster.width,
-				Self.Partie.partie.monster.height);
+				Self.Partie.partie.monster.height
+			);
+
+			Self.Texts.drawMonsterLife();
+		}
 	},
 	right : function () 
 	{
