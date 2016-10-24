@@ -36,7 +36,7 @@ Monster.prototype =
 	},
 	moveCalc : function ()
 	{
-		if (Monster.x<=0 || Monster.x>=2500)
+		if (Monster.x<=0 || Monster.x>=2500-64)
 		{
 			Monster.vx=Monster.vx*(-1);
 		}
