@@ -11,6 +11,7 @@ function Monster (life,width,height,x,y,anim)
 	this.anim=anim;
 	this.animIncr=0;
 	this.animInter=0;
+	this.dmg=[5,10];
 }
 Monster.prototype = 
 {
@@ -33,7 +34,8 @@ Monster.prototype =
 			height : Monster.height,
 			x : Monster.x,
 			y : Monster.y,
-			anim : Monster.anim
+			anim : Monster.anim,
+			dmg : Monster.dmg
 		}
 		return monster;
 	},
@@ -80,7 +82,7 @@ Monster.prototype =
 		return dmg;
 	}
 }
-var Monster =  new Monster(1000,64,64,0,472+64,0);
+var Monster =  new Monster(1000,64,64,400,536,0);
 
 exports.MonsterStart = Monster.startAll;
 exports.Monster = Monster.returnMonsterVal;

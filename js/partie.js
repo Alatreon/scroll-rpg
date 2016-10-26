@@ -70,7 +70,8 @@ Partie.prototype=
 	{
 		var perso = 
 		{
-			persoAnimVal:Self.Perso.persoAnimVal,
+			persoAnimValX:Self.Perso.persoAnimValX,
+			persoAnimValY:Self.Perso.persoAnimValY,
 			width:Self.Perso.width,
 			height:Self.Perso.height,
 			x:Self.Perso.x,

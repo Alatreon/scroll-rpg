@@ -29,6 +29,10 @@ Main.prototype=
 	{		
 		setInterval(function()
 		{
+			Self.Perso.checkMonsterColl();
+
+			Self.Perso.monsterAnimColl();
+
 			Self.ctx.clearRect(0, 0, Self.c.width, Self.c.height);
 
 			Self.Map.setBackground();
@@ -37,8 +41,8 @@ Main.prototype=
 
 			Self.Perso.draw(
 				Self.LoadImage.loadedImgList[1],
-				Self.Perso.persoAnimVal,
-				0,
+				Self.Perso.persoAnimValX,
+				Self.Perso.persoAnimValY,
 				Self.Perso.width,
 				Self.Perso.height,
 				Self.Perso.x,
@@ -61,9 +65,11 @@ Main.prototype=
 				Self.Perso.x-Self.Perso.leftrightWeaponX,
 				Self.Perso.y-Self.Perso.leftrightWeaponY);
 			
-			Self.Texts.drawDmg();
+			Self.Texts.drawAllTexts();
 
 			Self.Partie.transaction();
+
+			Self.Perso.drawLifeBar();
 
 		},25);
 	},
@@ -76,8 +82,8 @@ Main.prototype=
 				{
 					Self.ctx.drawImage(
 						Self.LoadImage.loadedImgList[1],
-						Self.Partie.partie.players[i].perso.persoAnimVal,
-						0,
+						Self.Partie.partie.players[i].perso.persoAnimValX,
+						Self.Partie.partie.players[i].perso.persoAnimValY,
 						Self.Partie.partie.players[i].perso.width,
 						Self.Partie.partie.players[i].perso.height,
 						Self.Partie.partie.players[i].perso.x-Self.Map.x,

@@ -4,9 +4,12 @@ function Texts ()
 }
 Texts.prototype=
 {
+	drawAllTexts : function ()
+	{
+		this.drawDmg();
+	},
 	drawMonsterLife : function ()
 	{
-
 		Self.ctx.font = "30px "+this.font;
 		Self.ctx.textAlign = "center";
         Self.ctx.fillStyle = "rgba(0, 0, 0, 1.0)";
@@ -41,5 +44,17 @@ Texts.prototype=
 				}
 			}
 		}
+	},
+	drawHeroLife : function ()
+	{
+		Self.ctx.font = "30px "+this.font;
+		Self.ctx.textAlign = "center";
+        Self.ctx.fillStyle = "rgba(0, 0, 0, 1.0)";
+		Self.ctx.fillText(Self.Perso.life+"/"+Self.Perso.lifeMax, 178, 58);
+
+		Self.ctx.font = "30px "+this.font;
+		Self.ctx.textAlign = "center";
+        Self.ctx.fillStyle = "rgba(0, 0, 0, 1.0)";
+		Self.ctx.fillText(20+"/"+20, 178, 84);
 	}
 }

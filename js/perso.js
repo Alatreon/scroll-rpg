@@ -10,6 +10,9 @@ function Perso ()
 	/* -saut*/
 	this.vy = 2;
 
+	this.lifeMax = 80;
+	this.life = 80;
+
 	/*Details visuels de Perso*/
 	this.width = 64;
 	this.height = 128;
@@ -29,7 +32,8 @@ function Perso ()
 	this.leftrightWeaponY=65;
 
 	this.incrMoveAnim=0;
-	this.persoAnimVal=0;
+	this.persoAnimValX=0;
+	this.persoAnimValY=0;
 	this.persoAnimStop=false;
 
 	/*Saut*/
@@ -44,12 +48,16 @@ function Perso ()
 	this.weaponAnimVal=396+132;
 	this.checkAttackBool = true;
 
+	/*Mobcoll*/
+	this.monsterAnimColIncr=0;
+	this.monsterAnimColBool=true;
+
 }
 Perso.prototype = 
 {
-	draw : function (img,persoAnimVal,topbotAnim,width,height,x,y,width,height)
+	draw : function (img,persoAnimValX,topbotAnim,width,height,x,y,width,height)
 	{
-		Self.ctx.drawImage(img,persoAnimVal,topbotAnim,width,height,x,y,width,height);
+		Self.ctx.drawImage(img,persoAnimValX,topbotAnim,width,height,x,y,width,height);
 	},
 	drawAttack : function (attack,img,weaponAnimVal,weaponAnimValVert,weaponWidth,weaponHeight,leftrightWeaponX,leftrightWeaponY) 
 	{
@@ -66,8 +74,36 @@ Perso.prototype =
 				weaponWidth,
 				weaponHeight
 			);
-
 		}
+	},
+	drawLifeBar : function ()
+	{
+		var pourcent =  ((100 * this.life / this.lifeMax)/100)*184;
+
+        Self.ctx.fillStyle = "rgba(0, 255, 0, 1.0)";
+		Self.ctx.fillRect(92,40,pourcent,24);
+
+        Self.ctx.fillStyle = "rgba(0, 0, 255, 1.0)";
+		Self.ctx.fillRect(84,66,192,26);
+
+		Self.ctx.drawImage(
+			Self.LoadImage.loadedImgList[5],
+			0, 0,
+			Self.LoadImage.loadedImgList[5].width,
+			Self.LoadImage.loadedImgList[5].height,
+			20,	20,
+			Self.LoadImage.loadedImgList[5].width,
+			Self.LoadImage.loadedImgList[5].height
+		);
+
+		Self.ctx.drawImage(
+			Self.LoadImage.loadedImgList[1],
+			0, 0,
+			64, 48,
+			28, 34,
+			64, 48
+		);
+		Self.Texts.drawHeroLife();
 	},
 	jump : function (callback) 
 	{
@@ -157,6 +193,47 @@ Perso.prototype =
 			Self.Partie.persoAttack();
 		}
 
+	},
+	checkMonsterColl : function ()
+	{
+		if (Self.Partie.partie.monster.x-Self.Map.x < this.x + this.width &&
+		    Self.Partie.partie.monster.x-Self.Map.x + Self.Partie.partie.monster.width > this.x &&
+		    Self.Partie.partie.monster.y < this.y + this.height &&
+			Self.Partie.partie.monster.height + Self.Partie.partie.monster.y > this.y &&
+			this.monsterAnimColBool && Self.Partie.partie.monster.life>0) 
+		{
+			this.monsterAnimColBool=false;
+
+			var dmg = Math.floor(Math.random() *
+			(Self.Partie.partie.monster.dmg[1] - Self.Partie.partie.monster.dmg[0]) + Self.Partie.partie.monster.dmg[0]);
+
+			this.life=this.life-dmg;
+			if(this.life<1){this.life=0}
+
+		}
+
+	},
+	monsterAnimColl : function ()
+	{
+		if(!this.monsterAnimColBool)
+		{
+			this.monsterAnimColIncr+=1;
+
+			if(this.monsterAnimColIncr%2 == 1)
+			{
+				this.persoAnimValY=0;
+			}
+			if(this.monsterAnimColIncr%2 == 0)
+			{
+				this.persoAnimValY=-128;
+			}
+			if(this.monsterAnimColIncr>=40)
+			{
+				this.monsterAnimColIncr=0;
+				this.persoAnimValY=0;
+				this.monsterAnimColBool=true;
+			}
+		}
 	},
 	stop : function (evt) 
 	{
@@ -249,6 +326,6 @@ Perso.prototype =
 				self.jumpanim= 0;
 			}
 		}
-		this.persoAnimVal=this.jumpanim+this.leftright+this.leftrightAnim;
+		this.persoAnimValX=this.jumpanim+this.leftright+this.leftrightAnim;
 	}
 }
