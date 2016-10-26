@@ -36,7 +36,7 @@ io.sockets.on('connection', function (socket) {
     	perso.x=perso.x+mappos;
 
 		partie.players.push({playerId : socket.id, perso : perso});
-		console.log(monster.Monster());
+		// console.log(monster.Monster());
 		socket.emit('client_recept_partie', partie);
 
 		socket.broadcast.emit('client_recept_partie', partie);
@@ -45,7 +45,7 @@ io.sockets.on('connection', function (socket) {
     
     socket.on('serv_perso_update', function(perso, mappos) {
 
-    	console.log(partie.players.length);
+    	// console.log(partie.players.length);
 
 		partie.monster=monster.Monster();
 
@@ -65,12 +65,12 @@ io.sockets.on('connection', function (socket) {
     });
 
     
-    socket.on('serv_perso_attack', function() {
+    socket.on('serv_perso_attack', function(i) {
 
-		var dmg = {dmg:monster.MonsterTakeDmg(10,20), socketId:socket.id};
+		var dmg = {dmg:monster.MonsterTakeDmg(10,20,i), socketId:socket.id};
 
-		socket.emit('client_recept_dmgs_monster',dmg);
-		socket.broadcast.emit('client_recept_dmgs_monster',dmg);
+		socket.emit('client_recept_dmgs_monster',dmg,i);
+		socket.broadcast.emit('client_recept_dmgs_monster',dmg,i);
 
     	console.log('ATTTTAAAAAAAAACK');
     });
@@ -81,7 +81,7 @@ io.sockets.on('connection', function (socket) {
 
 		socket.broadcast.emit('client_we_lose_a_player');
 
-		// console.log("Deconnection de "+socket.id);
+		console.log("Deconnection de "+socket.id);
 	});
 });
 

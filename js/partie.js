@@ -26,12 +26,12 @@ Partie.prototype=
 				Self.Partie.partie=partie;
 			});
 
-			Self.Partie.socket.on('client_recept_dmgs_monster', function(dmg) {
-						
+			Self.Partie.socket.on('client_recept_dmgs_monster', function(dmg,i) {
 				if(dmg.socketId == Self.Partie.socketId)
 				{
 					dmg = 
 					{
+						monsterId:i,
 						dmg:dmg.dmg,
 						player:true,
 						positionY:0,
@@ -43,6 +43,7 @@ Partie.prototype=
 				{
 					dmg = 
 					{
+						monsterId:i,
 						dmg:dmg.dmg,
 						player:false,
 						positionY:0,
@@ -90,9 +91,9 @@ Partie.prototype=
 	{
 		Self.Partie.socket.emit('serv_perso_update', Self.Perso, Self.Map.x);
 	},
-	persoAttack : function ()
+	persoAttack : function (i)
 	{
-		Self.Partie.socket.emit('serv_perso_attack');
+		Self.Partie.socket.emit('serv_perso_attack',i);
 	},
 	transaction : function ()
 	{
