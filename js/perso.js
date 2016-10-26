@@ -183,33 +183,39 @@ Perso.prototype =
 	},
 	checkAttack : function ()
 	{
-		if ( Self.Partie.partie.monster.x-Self.Map.x < this.x-this.leftrightWeaponX + this.weaponWidth &&
-		   	 Self.Partie.partie.monster.x-Self.Map.x + Self.Partie.partie.monster.width > this.x-this.leftrightWeaponX &&
-		   	 Self.Partie.partie.monster.y < this.y-this.leftrightWeaponY + this.weaponHeight &&
-		   	 Self.Partie.partie.monster.height + Self.Partie.partie.monster.y > this.y-this.leftrightWeaponY &&
-			 this.checkAttackBool && Self.Partie.partie.monster.life>0)
+		for(var i = 0; Self.Partie.partie.monster.length>i; i++)
+		{
+			if ( Self.Partie.partie.monster[i].x-Self.Map.x < this.x-this.leftrightWeaponX + this.weaponWidth &&
+		   	 Self.Partie.partie.monster[i].x-Self.Map.x + Self.Partie.partie.monster[i].width > this.x-this.leftrightWeaponX &&
+		   	 Self.Partie.partie.monster[i].y < this.y-this.leftrightWeaponY + this.weaponHeight &&
+		   	 Self.Partie.partie.monster[i].height + Self.Partie.partie.monster[i].y > this.y-this.leftrightWeaponY &&
+			 this.checkAttackBool && Self.Partie.partie.monster[i].life>0)
 		{
 			this.checkAttackBool = false;
-			Self.Partie.persoAttack();
+			Self.Partie.persoAttack(i);
 		}
+	}
 
 	},
 	checkMonsterColl : function ()
 	{
-		if (Self.Partie.partie.monster.x-Self.Map.x < this.x + this.width &&
-		    Self.Partie.partie.monster.x-Self.Map.x + Self.Partie.partie.monster.width > this.x &&
-		    Self.Partie.partie.monster.y < this.y + this.height &&
-			Self.Partie.partie.monster.height + Self.Partie.partie.monster.y > this.y &&
-			this.monsterAnimColBool && Self.Partie.partie.monster.life>0) 
+		for(var i = 0; Self.Partie.partie.monster.length>i; i++)
 		{
-			this.monsterAnimColBool=false;
+			if (Self.Partie.partie.monster[i].x-Self.Map.x < this.x + this.width &&
+			    Self.Partie.partie.monster[i].x-Self.Map.x + Self.Partie.partie.monster[i].width > this.x &&
+			    Self.Partie.partie.monster[i].y < this.y + this.height &&
+				Self.Partie.partie.monster[i].height + Self.Partie.partie.monster[i].y > this.y &&
+				this.monsterAnimColBool && Self.Partie.partie.monster[i].life>0) 
+			{
+				this.monsterAnimColBool=false;
 
-			var dmg = Math.floor(Math.random() *
-			(Self.Partie.partie.monster.dmg[1] - Self.Partie.partie.monster.dmg[0]) + Self.Partie.partie.monster.dmg[0]);
+				var dmg = Math.floor(Math.random() *
+				(Self.Partie.partie.monster[i].dmg[1] - Self.Partie.partie.monster[i].dmg[0]) + Self.Partie.partie.monster[i].dmg[0]);
 
-			this.life=this.life-dmg;
-			if(this.life<1){this.life=0}
+				this.life=this.life-dmg;
+				if(this.life<1){this.life=0}
 
+			}
 		}
 
 	},
