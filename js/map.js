@@ -34,6 +34,7 @@ Map.prototype=
 	},
 	drawMonster : function ()
 	{	
+		console.log(Self.Partie.partie.monster.length)
 		if(Self.Partie.partie.monster.life>0)
 		{
 			Self.ctx.drawImage(
@@ -90,7 +91,7 @@ Map.prototype=
 		}
 	},
 	checkObstacle : function ()
-	{
+	{		
 		this.colBorderX=4/*Self.Perso.vx+1*/;
 		this.colBorderY=3/*Self.Perso.vy+1*/;
 		this.floorVal=472;
