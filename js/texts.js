@@ -49,16 +49,16 @@ Texts.prototype=
 			}
 		}
 	},
-	drawHeroLife : function ()
+	drawHeroLife : function (life,lifeMax,x,y)
 	{
 		Self.ctx.font = "30px "+this.font;
 		Self.ctx.textAlign = "center";
         Self.ctx.fillStyle = "rgba(0, 0, 0, 1.0)";
-		Self.ctx.fillText(Self.Perso.life+"/"+Self.Perso.lifeMax, 178, 58);
+		Self.ctx.fillText(life+"/"+lifeMax, 158+x, 38+y);
 
 		Self.ctx.font = "30px "+this.font;
 		Self.ctx.textAlign = "center";
         Self.ctx.fillStyle = "rgba(0, 0, 0, 1.0)";
-		Self.ctx.fillText(20+"/"+20, 178, 84);
+		Self.ctx.fillText(20+"/"+20, 158+x, 64+y);
 	}
 }

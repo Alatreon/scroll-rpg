@@ -78,21 +78,24 @@ Perso.prototype =
 	},
 	drawLifeBar : function ()
 	{
+		var x=20;
+		var y=20;
+
 		var pourcent =  ((100 * this.life / this.lifeMax)/100)*184;
 
 		/*barre de vie*/
         Self.ctx.fillStyle = "rgba(0, 255, 0, 1.0)";
-		Self.ctx.fillRect(92+30,40,pourcent,24);
+		Self.ctx.fillRect(72+x,20+y,pourcent,24);
 
         Self.ctx.fillStyle = "rgba(0, 0, 255, 1.0)";
-		Self.ctx.fillRect(84,66,192,26);
+		Self.ctx.fillRect(64+x,46+y,192,26);
 
 		Self.ctx.drawImage(
 			Self.LoadImage.loadedImgList[5],
 			0, 0,
 			Self.LoadImage.loadedImgList[5].width,
 			Self.LoadImage.loadedImgList[5].height,
-			20,	20,
+			x,	y,
 			Self.LoadImage.loadedImgList[5].width,
 			Self.LoadImage.loadedImgList[5].height
 		);
@@ -101,10 +104,10 @@ Perso.prototype =
 			Self.LoadImage.loadedImgList[1],
 			0, 0,
 			64, 48,
-			28, 34,
+			8+x, 14+y,
 			64, 48
 		);
-		Self.Texts.drawHeroLife();
+		Self.Texts.drawHeroLife(Self.Perso.life,Self.Perso.lifeMax,x,y);
 	},
 	jump : function (callback) 
 	{
