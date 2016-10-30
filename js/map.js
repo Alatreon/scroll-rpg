@@ -36,12 +36,10 @@ Map.prototype=
 	{
 		for(var i = 0; Self.Partie.partie.monster.length>i; i++)
 		{
-			if(Self.Partie.partie.monster[i].life>0)
-			{
 				Self.ctx.drawImage(
 					Self.LoadImage.loadedImgList[4],
-					Self.Partie.partie.monster[i].anim,
-					64,
+					Self.Partie.partie.monster[i].animX,
+					Self.Partie.partie.monster[i].animY,
 					Self.Partie.partie.monster[i].width,
 					Self.Partie.partie.monster[i].height,
 					Self.Partie.partie.monster[i].x-Self.Map.x,
@@ -51,7 +49,6 @@ Map.prototype=
 				);
 
 				Self.Texts.drawMonsterLife();
-			}
 		}
 	},
 	right : function () 

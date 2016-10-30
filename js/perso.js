@@ -80,8 +80,9 @@ Perso.prototype =
 	{
 		var pourcent =  ((100 * this.life / this.lifeMax)/100)*184;
 
+		/*barre de vie*/
         Self.ctx.fillStyle = "rgba(0, 255, 0, 1.0)";
-		Self.ctx.fillRect(92,40,pourcent,24);
+		Self.ctx.fillRect(92+30,40,pourcent,24);
 
         Self.ctx.fillStyle = "rgba(0, 0, 255, 1.0)";
 		Self.ctx.fillRect(84,66,192,26);
