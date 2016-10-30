@@ -11,7 +11,11 @@ Monster.prototype =
 		{
 			for(var i = 0; Monster.monsJson.length>i; i++)
 			{
-				Monster.monsJson[i].x+=Monster.monsJson[i].vx;
+				if(Monster.monsJson[i].life>0)
+				{
+					Monster.monsJson[i].x+=Monster.monsJson[i].vx;
+				}
+				Monster.deadAnim(i);
 			}
 			Monster.moveCalc();
 			Monster.moveAnim();
@@ -19,14 +23,24 @@ Monster.prototype =
 	},
 	returnMonsterVal : function()
 	{
-		// console.log(Monster.monsJson.length)
+		var monster = []
 
-		// for(var i = 0; Monster.monsJson.length>i; i++)
-		// {
-		// 	console.log(i+"eeee")
-		// }
-
-		var monster = Monster.monsJson;
+		for(var i = 0; Monster.monsJson.length>i; i++)
+		{
+			monster.push(
+				{
+					life : Monster.monsJson[i].life,
+					lifeMax : Monster.monsJson[i].lifeMax,
+					width : Monster.monsJson[i].width,
+					height : Monster.monsJson[i].height,
+					x : Monster.monsJson[i].x,
+					y : Monster.monsJson[i].y,
+					animX : Monster.monsJson[i].animX,
+					animY : Monster.monsJson[i].animY,
+					dmg : Monster.monsJson[i].dmg
+				}
+			);
+		}
 
 		return monster;
 	
@@ -45,22 +59,25 @@ Monster.prototype =
 	{
 		for(var i = 0; Monster.monsJson.length>i; i++)
 		{
-			Monster.monsJson[i].animIncr+=1;
-
-			if (Monster.monsJson[i].animIncr<=2)
+			if(Monster.monsJson[i].life>0)
 			{
-				Monster.monsJson[i].anim=0;
-			}
+				Monster.monsJson[i].animIncr+=1;
 
-			if (Monster.monsJson[i].animIncr>=2)
-			{
-				Monster.monsJson[i].anim=64;
-			}
+				if (Monster.monsJson[i].animIncr<=2)
+				{
+					Monster.monsJson[i].animX=0;
+				}
 
-			if (Monster.monsJson[i].animIncr>=4)
-			{
-				Monster.monsJson[i].animIncr=0;
-				Monster.monsJson[i].anim=0;
+				if (Monster.monsJson[i].animIncr>=2)
+				{
+					Monster.monsJson[i].animX=64;
+				}
+
+				if (Monster.monsJson[i].animIncr>=4)
+				{
+					Monster.monsJson[i].animIncr=0;
+					Monster.monsJson[i].animX=0;
+				}
 			}
 		}
 	},
@@ -69,57 +86,70 @@ Monster.prototype =
 			var dmg = Math.floor(Math.random() * (dmgMax - dmgMin) + dmgMin);
 
 			Monster.monsJson[i].life=Monster.monsJson[i].life-dmg;
+			Monster.monsJson[i].takeDmg=true;
 
 			if(Monster.monsJson[i].life<=0)
 			{
-				Monster.monsJson[i].life="DEAD";
-				Monster.monsJson[i].width=0;
-				Monster.monsJson[i].height=0;
+				Monster.monsJson[i].animIncr=0;
+				Monster.monsJson[i].life=0;
 			}
 		
 		return dmg;
+	},
+	deadAnim : function (i)
+	{
+
+			if(Monster.monsJson[i].life<=0)
+			{
+				Monster.monsJson[i].animX=128;
+				Monster.monsJson[i].animIncr+=1;
+				if(Monster.monsJson[i].animIncr>5){Monster.monsJson.splice(i,1)}
+			}
 	}
 }
 var monsJson = [
 		{
-			id:0,
-			life : 1000,
-			lifeMax : 1000,
+			life : 50,
+			lifeMax : 50,
 			width : 64,
 			height : 64,
 			x : 600,
 			y : 536,
 			vx:3,
 			vy:2,
-			anim : 0,
+			animX : 0,
+			animY : 64,
+			takeDmg : false,
 			animIncr:0,
 			dmg : [5,10]
 		},
 		{
-			id:1,
 			life : 500,
 			lifeMax : 500,
-			width : 64,
-			height : 64,
-			x : 1700,
-			y : 536,
-			vx:3,
-			vy:2,
-			anim : 0,
-			animIncr:0,
-			dmg : [5,10]
-		},
-		{
-			id:1,
-			life : 50,
-			lifeMax : 50,
 			width : 64,
 			height : 64,
 			x : 1100,
 			y : 536,
 			vx:3,
 			vy:2,
-			anim : 0,
+			animX : 0,
+			animY : 64,
+			takeDmg : false,
+			animIncr:0,
+			dmg : [5,10]
+		},
+		{
+			life : 1000,
+			lifeMax : 1000,
+			width : 64,
+			height : 64,
+			x : 1700,
+			y : 536,
+			vx:3,
+			vy:2,
+			animX : 0,
+			animY : 64+128,
+			takeDmg : false,
 			animIncr:0,
 			dmg : [5,10]
 		}

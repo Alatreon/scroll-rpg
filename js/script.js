@@ -101,9 +101,39 @@ Main.prototype=
 						(Self.Partie.partie.players[i].perso.x-Self.Map.x)-Self.Partie.partie.players[i].perso.leftrightWeaponX,
 						Self.Partie.partie.players[i].perso.y-Self.Partie.partie.players[i].perso.leftrightWeaponY
 					);
+					// Self.drawOtherLifeBar()
 				}
 			}
 		}
+	},
+	drawOtherLifeBar : function (life, lifeMax)
+	{
+		var pourcent =  ((100 * life / lifeMax)/100)*184;
+
+        Self.ctx.fillStyle = "rgba(0, 255, 0, 1.0)";
+		Self.ctx.fillRect(92,40,pourcent,24);
+
+        Self.ctx.fillStyle = "rgba(0, 0, 255, 1.0)";
+		Self.ctx.fillRect(84,66,192,26);
+
+		Self.ctx.drawImage(
+			Self.LoadImage.loadedImgList[5],
+			0, 0,
+			Self.LoadImage.loadedImgList[5].width,
+			Self.LoadImage.loadedImgList[5].height,
+			20,	20,
+			Self.LoadImage.loadedImgList[5].width,
+			Self.LoadImage.loadedImgList[5].height
+		);
+
+		Self.ctx.drawImage(
+			Self.LoadImage.loadedImgList[1],
+			0, 0,
+			64, 48,
+			28, 34,
+			64, 48
+		);
+		Self.Texts.drawHeroLife();
 	}
 
 }

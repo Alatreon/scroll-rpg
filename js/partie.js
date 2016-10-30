@@ -77,6 +77,8 @@ Partie.prototype=
 			height:Self.Perso.height,
 			x:Self.Perso.x,
 			y:Self.Perso.y,
+			life:Self.Perso.life,
+			lifeMax:Self.Perso.lifeMax,
 			attackBool:Self.Perso.attackBool,
 			weaponAnimVal:Self.Perso.weaponAnimVal,
 			weaponWidth:Self.Perso.weaponWidth,
