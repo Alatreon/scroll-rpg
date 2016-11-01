@@ -216,6 +216,16 @@ Perso.prototype =
 				var dmg = Math.floor(Math.random() *
 				(Self.Partie.partie.monster[i].dmg[1] - Self.Partie.partie.monster[i].dmg[0]) + Self.Partie.partie.monster[i].dmg[0]);
 
+				Self.Texts.dmgPlayerTab.push(
+					{
+						dmg:dmg,
+						alpha:1.0,
+						positionY:0,
+						incr:0
+					});
+
+				console.log(Self.Texts.dmgPlayerTab)
+
 				this.life=this.life-dmg;
 				if(this.life<1){this.life=0}
 

@@ -27,7 +27,7 @@ monster.MonsterStart();
 
 io.sockets.on('connection', function (socket) {
 
-	console.log("Connection de "+socket.id);
+	console.log("Connection de ' "+socket.id+" '.");
 
 	socket.emit('client_connected', socket.id, partie);
 
@@ -81,8 +81,9 @@ io.sockets.on('connection', function (socket) {
 
 		socket.broadcast.emit('client_we_lose_a_player');
 
-		console.log("Deconnection de "+socket.id);
+		console.log("Deconnection de ' "+socket.id+" '.");
 	});
 });
 
 server.listen(port);
+console.log("Server OK.")
