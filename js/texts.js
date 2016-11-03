@@ -1,12 +1,14 @@
 function Texts ()
 {
 	this.font="PixelPolice";
+	this.dmgPlayerTab=[];
 }
 Texts.prototype=
 {
 	drawAllTexts : function ()
 	{
 		this.drawDmg();
+		this.drawPlayerDmg();
 	},
 	drawMonsterLife : function ()
 	{
@@ -45,6 +47,33 @@ Texts.prototype=
 				if(Self.Partie.dmgs[i].alpha<0)
 				{
 					Self.Partie.dmgs.splice(i,1)
+				}
+			}
+		}
+	},
+	drawPlayerDmg : function ()
+	{
+		if(this.dmgPlayerTab.length>0)
+		{
+
+			for(var i = 0; i<this.dmgPlayerTab.length; i++)
+			{
+				var color = "";
+
+				Self.ctx.font = "40px "+this.font;
+				Self.ctx.textAlign = "center";
+		        Self.ctx.fillStyle = "rgba(255, 0, 0, " + this.dmgPlayerTab[i].alpha + ")";
+				Self.ctx.fillText("-"+this.dmgPlayerTab[i].dmg,
+					Self.Perso.x+(Self.Perso.width/2),
+					Self.Perso.y-this.dmgPlayerTab[i].positionY+(Self.Perso.height/2));
+
+				this.dmgPlayerTab[i].alpha-=0.02;
+				this.dmgPlayerTab[i].incr+=1;
+				this.dmgPlayerTab[i].positionY+=2;
+
+				if(this.dmgPlayerTab[i].alpha<0)
+				{
+					this.dmgPlayerTab.splice(i,1)
 				}
 			}
 		}
