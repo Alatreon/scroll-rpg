@@ -43,10 +43,8 @@ function Perso ()
 	this.surUnObstacle=false;
 
 	/*Attack*/
-	this.attackBool=false;
 	this.weaponAnim=396+132;			
 	this.weaponAnimVal=396+132;
-	this.checkAttackBool = true;
 
 	/*Mobcoll*/
 	this.monsterAnimColIncr=0;
@@ -61,7 +59,7 @@ Perso.prototype =
 	},
 	drawAttack : function (attack,img,weaponAnimVal,weaponAnimValVert,weaponWidth,weaponHeight,leftrightWeaponX,leftrightWeaponY) 
 	{
-		if(attack)
+		if(!attack)
 		{
 			Self.ctx.drawImage(
 				img,
@@ -74,6 +72,7 @@ Perso.prototype =
 				weaponWidth,
 				weaponHeight
 			);
+			this.attack();
 		}
 	},
 	drawLifeBar : function ()
@@ -166,40 +165,17 @@ Perso.prototype =
 		self=this;
 
 		this.incrAttackAnim = 0;
-		this.checkAttackBool = true;
+		Self.Check.checkAttackBool = true;
+		
+		self.moveAnim();
 
-		Self.KeyboardKey.heroAttackInter = setInterval(function()
+		self.incrAttackAnim+=1;
+
+		if(self.incrAttackAnim>=40)
 		{
-			self.moveAnim();
-
-			self.attackBool=true;
-
-			self.incrAttackAnim+=1;
-
-			if(self.incrAttackAnim>=40)
-			{
-				self.attackBool=false;
-				callback();
-			}
-			self.checkAttack();
-
-		},8);
-	},
-	checkAttack : function ()
-	{
-		for(var i = 0; Self.Partie.partie.monster.length>i; i++)
-		{
-			if ( Self.Partie.partie.monster[i].x-Self.Map.x < this.x-this.leftrightWeaponX + this.weaponWidth &&
-		   	 Self.Partie.partie.monster[i].x-Self.Map.x + Self.Partie.partie.monster[i].width > this.x-this.leftrightWeaponX &&
-		   	 Self.Partie.partie.monster[i].y < this.y-this.leftrightWeaponY + this.weaponHeight &&
-		   	 Self.Partie.partie.monster[i].height + Self.Partie.partie.monster[i].y > this.y-this.leftrightWeaponY &&
-			 this.checkAttackBool && Self.Partie.partie.monster[i].life>0)
-		{
-			this.checkAttackBool = false;
-			Self.Partie.persoAttack(i);
+			callback();
 		}
-	}
-
+		Self.Check.checkAttack(self.x,self.y,self.weaponWidth,self.weaponHeight,self.leftrightWeaponX,self.leftrightWeaponY);
 	},
 	checkMonsterColl : function ()
 	{
@@ -223,8 +199,6 @@ Perso.prototype =
 						positionY:0,
 						incr:0
 					});
-
-				console.log(Self.Texts.dmgPlayerTab)
 
 				this.life=this.life-dmg;
 				if(this.life<1){this.life=0}

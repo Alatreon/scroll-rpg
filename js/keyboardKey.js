@@ -74,7 +74,6 @@ KeyboardKey.prototype=
 					this.heroAttackBool = false;
 					Self.Perso.attack(function(){
 					Self.KeyboardKey.heroAttackBool = true;
-						clearInterval(Self.KeyboardKey.heroAttackInter);
 					});
 				}
 			break;
