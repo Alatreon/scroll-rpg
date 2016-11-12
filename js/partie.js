@@ -15,11 +15,7 @@ Partie.prototype=
 
 			Self.Partie.socketId=socketId;
 
-			Self.launchKey();
-			
-			Self.Partie.partie=partie;
-			
-			console.log(self.partie);
+			Self.launchKey();	
 
 			Self.drawAll();
 

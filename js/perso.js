@@ -43,6 +43,7 @@ function Perso ()
 	this.surUnObstacle=false;
 
 	/*Attack*/
+	this.incrAttackAnim=0;
 	this.weaponAnim=396+132;			
 	this.weaponAnimVal=396+132;
 
@@ -73,6 +74,7 @@ Perso.prototype =
 				weaponHeight
 			);
 			this.attack();
+			console.log(attack)
 		}
 	},
 	drawLifeBar : function ()
@@ -160,22 +162,22 @@ Perso.prototype =
 		this.moveAnim();
 		this.x -= this.vx;
 	},
-	attack : function (callback) 
-	{
-		self=this;
+	attack : function () 
+	{		
+		this.moveAnim();
 
-		this.incrAttackAnim = 0;
-		Self.Check.checkAttackBool = true;
-		
-		self.moveAnim();
+		this.incrAttackAnim+=1;
 
-		self.incrAttackAnim+=1;
-
-		if(self.incrAttackAnim>=40)
-		{
-			callback();
-		}
 		Self.Check.checkAttack(self.x,self.y,self.weaponWidth,self.weaponHeight,self.leftrightWeaponX,self.leftrightWeaponY);
+		
+		if(this.incrAttackAnim>=19)
+		{
+			Self.KeyboardKey.heroAttackBool = true;
+
+			this.incrAttackAnim=0;
+
+			Self.Check.checkAttackBool = true;
+		}
 	},
 	checkMonsterColl : function ()
 	{
@@ -254,31 +256,31 @@ Perso.prototype =
 		{
 			this.jumpanim=0;
 
-			if(this.incrAttackAnim<8)
+			if(this.incrAttackAnim<4)
 			{
 				this.leftrightAnim=320;
 
 				this.weaponAnim=0;				
 			}
-			else if(this.incrAttackAnim<20)
+			else if(this.incrAttackAnim<10)
 			{
 				this.leftrightAnim=64;
 
 				this.weaponAnim=132;				
 			}
-			else if(this.incrAttackAnim<30)
+			else if(this.incrAttackAnim<15)
 			{
 				this.leftrightAnim=64;
 
 				this.weaponAnim=132+132;				
 			}
-			else if(this.incrAttackAnim<39)
+			else if(this.incrAttackAnim<17)
 			{
 				this.leftrightAnim=64;
 
 				this.weaponAnim=396;			
 			}
-			else if(this.incrAttackAnim>=39)
+			else if(this.incrAttackAnim>=17)
 			{
 				this.leftrightAnim=0;			
 			}

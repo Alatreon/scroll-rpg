@@ -72,9 +72,6 @@ KeyboardKey.prototype=
 				if(evt.keyCode==32 && this.heroAttackBool)
 				{
 					this.heroAttackBool = false;
-					Self.Perso.attack(function(){
-					Self.KeyboardKey.heroAttackBool = true;
-					});
 				}
 			break;
 		}
