@@ -30,7 +30,7 @@ Map.prototype=
 {
 	setBackground : function ()
 	{
-		Self.ctx.drawImage(Self.LoadImage.loadedImgList[0],this.x,this.y,Self.c.width,Self.c.height,0,0,Self.c.width,Self.c.height);
+		Self.ctx.drawImage(Self.LoadImage.loadedImgList[0], this.x, this.y,Self.c.width,Self.c.height,0,0,Self.c.width,Self.c.height);
 	},
 	drawMonster : function ()
 	{
@@ -94,7 +94,7 @@ Map.prototype=
 		this.colBorderX=4/*Self.Perso.vx+1*/;
 		this.colBorderY=3/*Self.Perso.vy+1*/;
 		this.floorVal=472;
-		// Self.Perso.JumpSize=2;
+
 		if(!Self.Perso.surUnObstacle || Self.Perso.surUnObstacle && !Self.KeyboardKey.heroMoveJumpBool)
 		{
 			Self.Perso.surUnObstacle=false;

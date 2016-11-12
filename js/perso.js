@@ -43,10 +43,9 @@ function Perso ()
 	this.surUnObstacle=false;
 
 	/*Attack*/
-	this.attackBool=false;
+	this.incrAttackAnim=0;
 	this.weaponAnim=396+132;			
 	this.weaponAnimVal=396+132;
-	this.checkAttackBool = true;
 
 	/*Mobcoll*/
 	this.monsterAnimColIncr=0;
@@ -61,7 +60,7 @@ Perso.prototype =
 	},
 	drawAttack : function (attack,img,weaponAnimVal,weaponAnimValVert,weaponWidth,weaponHeight,leftrightWeaponX,leftrightWeaponY) 
 	{
-		if(attack)
+		if(!attack)
 		{
 			Self.ctx.drawImage(
 				img,
@@ -74,6 +73,8 @@ Perso.prototype =
 				weaponWidth,
 				weaponHeight
 			);
+			this.attack();
+			console.log(attack)
 		}
 	},
 	drawLifeBar : function ()
@@ -161,45 +162,22 @@ Perso.prototype =
 		this.moveAnim();
 		this.x -= this.vx;
 	},
-	attack : function (callback) 
-	{
-		self=this;
+	attack : function () 
+	{		
+		this.moveAnim();
 
-		this.incrAttackAnim = 0;
-		this.checkAttackBool = true;
+		this.incrAttackAnim+=1;
 
-		Self.KeyboardKey.heroAttackInter = setInterval(function()
+		Self.Check.checkAttack(self.x,self.y,self.weaponWidth,self.weaponHeight,self.leftrightWeaponX,self.leftrightWeaponY);
+		
+		if(this.incrAttackAnim>=19)
 		{
-			self.moveAnim();
+			Self.KeyboardKey.heroAttackBool = true;
 
-			self.attackBool=true;
+			this.incrAttackAnim=0;
 
-			self.incrAttackAnim+=1;
-
-			if(self.incrAttackAnim>=40)
-			{
-				self.attackBool=false;
-				callback();
-			}
-			self.checkAttack();
-
-		},8);
-	},
-	checkAttack : function ()
-	{
-		for(var i = 0; Self.Partie.partie.monster.length>i; i++)
-		{
-			if ( Self.Partie.partie.monster[i].x-Self.Map.x < this.x-this.leftrightWeaponX + this.weaponWidth &&
-		   	 Self.Partie.partie.monster[i].x-Self.Map.x + Self.Partie.partie.monster[i].width > this.x-this.leftrightWeaponX &&
-		   	 Self.Partie.partie.monster[i].y < this.y-this.leftrightWeaponY + this.weaponHeight &&
-		   	 Self.Partie.partie.monster[i].height + Self.Partie.partie.monster[i].y > this.y-this.leftrightWeaponY &&
-			 this.checkAttackBool && Self.Partie.partie.monster[i].life>0)
-		{
-			this.checkAttackBool = false;
-			Self.Partie.persoAttack(i);
+			Self.Check.checkAttackBool = true;
 		}
-	}
-
 	},
 	checkMonsterColl : function ()
 	{
@@ -223,8 +201,6 @@ Perso.prototype =
 						positionY:0,
 						incr:0
 					});
-
-				console.log(Self.Texts.dmgPlayerTab)
 
 				this.life=this.life-dmg;
 				if(this.life<1){this.life=0}
@@ -280,31 +256,31 @@ Perso.prototype =
 		{
 			this.jumpanim=0;
 
-			if(this.incrAttackAnim<8)
+			if(this.incrAttackAnim<4)
 			{
 				this.leftrightAnim=320;
 
 				this.weaponAnim=0;				
 			}
-			else if(this.incrAttackAnim<20)
+			else if(this.incrAttackAnim<10)
 			{
 				this.leftrightAnim=64;
 
 				this.weaponAnim=132;				
 			}
-			else if(this.incrAttackAnim<30)
+			else if(this.incrAttackAnim<15)
 			{
 				this.leftrightAnim=64;
 
 				this.weaponAnim=132+132;				
 			}
-			else if(this.incrAttackAnim<39)
+			else if(this.incrAttackAnim<17)
 			{
 				this.leftrightAnim=64;
 
 				this.weaponAnim=396;			
 			}
-			else if(this.incrAttackAnim>=39)
+			else if(this.incrAttackAnim>=17)
 			{
 				this.leftrightAnim=0;			
 			}

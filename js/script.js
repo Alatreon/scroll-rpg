@@ -11,6 +11,7 @@ function Main ()
 	this.KeyboardKey = new KeyboardKey;
 	this.Map = new Map;
 	this.Perso = new Perso;
+	this.Check = new Check;
 	this.Partie = new Partie;
 	this.Texts = new Texts;
 }
@@ -37,7 +38,7 @@ Main.prototype=
 
 			Self.Map.setBackground();
 
-			Self.Perso.draw(
+			Self.Perso.draw(	
 				Self.LoadImage.loadedImgList[1],
 				Self.Perso.persoAnimValX,
 				Self.Perso.persoAnimValY,
@@ -54,7 +55,7 @@ Main.prototype=
 			Self.Map.drawMonster();
 
 			Self.Perso.drawAttack(
-				Self.Perso.attackBool,
+				Self.KeyboardKey.heroAttackBool,
 				Self.LoadImage.loadedImgList[3],
 				Self.Perso.weaponAnimVal,/*Position horizontale du sprite*/
 				0,/*Position verticale du sprite*/
