@@ -92,17 +92,18 @@ Main.prototype=
 						Self.Partie.partie.players[i].perso.width,
 						Self.Partie.partie.players[i].perso.height
 					);
-					/*Probleme suite a la suppresion du setInterval() de PersoAttack modifier le comportement des attaques des autres joueurs grace a un etat géré dans un array*/
-					// Self.Perso.drawAttack(
-					// 	Self.Partie.partie.players[i].perso.attackBool,
-					// 	Self.LoadImage.loadedImgList[3],
-					// 	Self.Partie.partie.players[i].perso.weaponAnimVal,/*Position horizontale du sprite*/
-					// 	0,/*Position verticale du sprite*/
-					// 	Self.Partie.partie.players[i].perso.weaponWidth,
-					// 	Self.Partie.partie.players[i].perso.weaponHeight,
-					// 	(Self.Partie.partie.players[i].perso.x-Self.Map.x)-Self.Partie.partie.players[i].perso.leftrightWeaponX,
-					// 	Self.Partie.partie.players[i].perso.y-Self.Partie.partie.players[i].perso.leftrightWeaponY
-					// );
+					/*Probleme suite a la suppresion du setInterval dans drawAttack.*/
+					console.log(Self.Partie.partie.players[i].perso.attackBool)
+					Self.Perso.drawAttack(
+						true/*Self.Partie.partie.players[i].perso.attackBool*/,
+						Self.LoadImage.loadedImgList[3],
+						Self.Partie.partie.players[i].perso.weaponAnimVal,/*Position horizontale du sprite*/
+						0,/*Position verticale du sprite*/
+						Self.Partie.partie.players[i].perso.weaponWidth,
+						Self.Partie.partie.players[i].perso.weaponHeight,
+						(Self.Partie.partie.players[i].perso.x-Self.Map.x)-Self.Partie.partie.players[i].perso.leftrightWeaponX,
+						Self.Partie.partie.players[i].perso.y-Self.Partie.partie.players[i].perso.leftrightWeaponY
+					);
 					plusY+=80;
 					Self.drawOtherLifeBar(Self.Partie.partie.players[i].perso.life,Self.Partie.partie.players[i].perso.lifeMax,plusY)
 				}
