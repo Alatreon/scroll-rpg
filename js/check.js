@@ -10,13 +10,13 @@ Check.prototype=
 	{
 		for(var i = 0; Self.Partie.partie.monster.length>i; i++)
 		{
-			if ( Self.Partie.partie.monster[i].x-Self.Map.x < x-weaponX + weaponWidth &&
-		   	 Self.Partie.partie.monster[i].x-Self.Map.x + Self.Partie.partie.monster[i].width > x-weaponX &&
+			if ( Self.Partie.partie.monster[i].x-Self.Perso.x < x-weaponX + weaponWidth &&
+		   	 Self.Partie.partie.monster[i].x-Self.Perso.x + Self.Partie.partie.monster[i].width > x-weaponX &&
 		   	 Self.Partie.partie.monster[i].y < y-weaponY + weaponHeight &&
 		   	 Self.Partie.partie.monster[i].height + Self.Partie.partie.monster[i].y > y-weaponY &&
-			 Self.Map.checkAttackBool && Self.Partie.partie.monster[i].life>0)
+			 Self.Perso.checkAttackBool && Self.Partie.partie.monster[i].life>0)
 			{
-				Self.Map.checkAttackBool = false;
+				Self.Perso.checkAttackBool = false;
 				Self.Partie.persoAttack(i);
 			}
 		}
@@ -24,8 +24,9 @@ Check.prototype=
 	},
 	checkObstacle : function ()
 	{		
-		/*this.colBorderX=Self.Perso.vx+1;
-		this.colBorderY=Self.Perso.vy+1;*/
+		this.colBorderX=Self.Perso.vx+1;
+		this.colBorderY=Self.Perso.vy+1;
+		Self.Map.floorVal=472;
 
 		if(!Self.Perso.surUnObstacle || Self.Perso.surUnObstacle && !Self.KeyboardKey.heroMoveJumpBool)
 		{
@@ -35,7 +36,6 @@ Check.prototype=
 		Self.Perso.surUnObstacle2=false;
 		
 		this.unBlockX();
-		Self.Map.floorVal=472;
 
 		for(var i=0; i<Self.Map.mapObstacles.obstacles.length; i++)
 		{
@@ -133,7 +133,7 @@ Check.prototype=
 
 				Self.KeyboardKey.heroMoveJumpBool=true;
 				
-				clearInterval(Self.Map.heroMoveJumpInter);
+				clearInterval(Self.Perso.heroMoveJumpInter);
 			});
 		}
 	},
