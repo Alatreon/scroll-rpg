@@ -49,7 +49,6 @@ function Perso ()
 
 	/*Mobcoll*/
 	this.monsterAnimColIncr=0;
-	this.monsterAnimColBool=true;
 
 }
 Perso.prototype = 
@@ -179,39 +178,9 @@ Perso.prototype =
 			Self.Check.checkAttackBool = true;
 		}
 	},
-	checkMonsterColl : function ()
-	{
-		for(var i = 0; Self.Partie.partie.monster.length>i; i++)
-		{
-			if (Self.Partie.partie.monster[i].x-Self.Map.x < this.x + this.width &&
-			    Self.Partie.partie.monster[i].x-Self.Map.x + Self.Partie.partie.monster[i].width > this.x &&
-			    Self.Partie.partie.monster[i].y < this.y + this.height &&
-				Self.Partie.partie.monster[i].height + Self.Partie.partie.monster[i].y > this.y &&
-				this.monsterAnimColBool && Self.Partie.partie.monster[i].life>0) 
-			{
-				this.monsterAnimColBool=false;
-
-				var dmg = Math.floor(Math.random() *
-				(Self.Partie.partie.monster[i].dmg[1] - Self.Partie.partie.monster[i].dmg[0]) + Self.Partie.partie.monster[i].dmg[0]);
-
-				Self.Texts.dmgPlayerTab.push(
-					{
-						dmg:dmg,
-						alpha:1.0,
-						positionY:0,
-						incr:0
-					});
-
-				this.life=this.life-dmg;
-				if(this.life<1){this.life=0}
-
-			}
-		}
-
-	},
 	monsterAnimColl : function ()
 	{
-		if(!this.monsterAnimColBool)
+		if(!Self.Check.monsterAnimColBool)
 		{
 			this.monsterAnimColIncr+=1;
 
@@ -227,7 +196,7 @@ Perso.prototype =
 			{
 				this.monsterAnimColIncr=0;
 				this.persoAnimValY=0;
-				this.monsterAnimColBool=true;
+				Self.Check.monsterAnimColBool=true;
 			}
 		}
 	},

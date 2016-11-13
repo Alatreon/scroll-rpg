@@ -79,13 +79,14 @@ Partie.prototype=
 			y:Self.Perso.y,
 			life:Self.Perso.life,
 			lifeMax:Self.Perso.lifeMax,
-			attackBool:Self.Perso.attackBool,
+			attackBool:Self.KeyboardKey.heroAttackBool,
 			weaponAnimVal:Self.Perso.weaponAnimVal,
 			weaponWidth:Self.Perso.weaponWidth,
 			weaponHeight:Self.Perso.weaponHeight,
 			leftrightWeaponX:Self.Perso.leftrightWeaponX,
 			leftrightWeaponY:Self.Perso.leftrightWeaponY
 		}
+		console.log(Self.KeyboardKey.heroAttackBool)
 
 		Self.Partie.socket.emit('serv_perso_recept', perso, Self.Map.x);
 	},

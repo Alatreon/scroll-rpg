@@ -3,6 +3,7 @@ function Check ()
 	this.checkAttackBool = true;
 	this.colBorderX=4/*Self.Perso.vx+1*/;
 	this.colBorderY=3/*Self.Perso.vy+1*/;
+	this.monsterAnimColBool=true;
 }
 Check.prototype=
 {
@@ -18,6 +19,37 @@ Check.prototype=
 			{
 				this.checkAttackBool = false;
 				Self.Partie.persoAttack(i);
+			}
+		}
+
+	},
+	checkMonsterColl : function ()
+	{
+		for(var i = 0; Self.Partie.partie.monster.length>i; i++)
+		{
+			if (Self.Partie.partie.monster[i].x-Self.Map.x < Self.Perso.x + Self.Perso.width &&
+			    Self.Partie.partie.monster[i].x-Self.Map.x + Self.Partie.partie.monster[i].width > Self.Perso.x &&
+			    Self.Partie.partie.monster[i].y < Self.Perso.y + Self.Perso.height &&
+				Self.Partie.partie.monster[i].height + Self.Partie.partie.monster[i].y > Self.Perso.y &&
+				this.monsterAnimColBool && Self.Partie.partie.monster[i].life>0) 
+			{
+				this.monsterAnimColBool=false;
+
+				var dmg = Math.floor(Math.random() *
+				(Self.Partie.partie.monster[i].dmg[1] - Self.Partie.partie.monster[i].dmg[0]) + Self.Partie.partie.monster[i].dmg[0]);
+
+				Self.Texts.dmgPlayerTab.push(
+					{
+						dmg:dmg,
+						alpha:1.0,
+						positionY:0,
+						incr:0
+					});
+
+				Self.Perso.life=Self.Perso.life-dmg;
+
+				if(Self.Perso.life<1){Self.Perso.life=0}
+
 			}
 		}
 
