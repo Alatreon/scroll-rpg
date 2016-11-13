@@ -35,6 +35,7 @@ Check.prototype=
 		Self.Perso.surUnObstacle2=false;
 		
 		this.unBlockX();
+		Self.Map.floorVal=472;
 
 		for(var i=0; i<Self.Map.mapObstacles.obstacles.length; i++)
 		{
