@@ -25,7 +25,7 @@ function Perso ()
 	this.jumpanim=0;
 	this.leftrightBool=true;
 	this.leftright=0;
-	this.leftrightAnim=0;
+	this.leftrightAnim=320;
 
 	this.leftrightWeapon=0;
 	this.leftrightWeaponX=0;
@@ -44,7 +44,7 @@ function Perso ()
 
 	/*Attack*/
 	this.incrAttackAnim=0;
-	this.weaponAnim=396+132;			
+	this.weaponAnim=0;			
 	this.weaponAnimVal=396+132;
 
 	/*Mobcoll*/
@@ -116,7 +116,7 @@ Perso.prototype =
 		
 		this.heroMoveJumpInter = setInterval(function()
 		{
-			Self.Map.checkObstacle();
+			Self.Check.checkObstacle();
 
 			self.jumpPos+=1;
 
@@ -272,7 +272,7 @@ Perso.prototype =
 			{
 				this.leftrightAnim=64;
 
-				this.weaponAnim=132+132;				
+				this.weaponAnim=132+132;
 			}
 			else if(this.incrAttackAnim<17)
 			{
@@ -282,7 +282,8 @@ Perso.prototype =
 			}
 			else if(this.incrAttackAnim>=17)
 			{
-				this.leftrightAnim=0;			
+				this.leftrightAnim=0;
+				this.weaponAnim=396;		
 			}
 
 			this.weaponAnimVal=this.weaponAnim+this.leftrightWeapon;	

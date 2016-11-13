@@ -15,7 +15,7 @@ Partie.prototype=
 
 			Self.Partie.socketId=socketId;
 
-			Self.launchKey();	
+			Self.launchKey();
 
 			Self.drawAll();
 

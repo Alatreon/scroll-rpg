@@ -48,7 +48,7 @@ KeyboardKey.prototype=
 					this.heroMoveRightBool = false;
 					this.heroMoveRightInter = setInterval(function()
 					{
-						Self.Map.checkObstacle();
+						Self.Check.checkObstacle();
 						Self.Perso.right();
 						Self.Map.right();
 
@@ -61,7 +61,7 @@ KeyboardKey.prototype=
 					this.heroMoveLeftBool = false;
 					this.heroMoveLeftInter = setInterval(function()
 					{
-						Self.Map.checkObstacle();
+						Self.Check.checkObstacle();
 						Self.Perso.left();	
 						Self.Map.left();
 
