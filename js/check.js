@@ -26,6 +26,7 @@ Check.prototype=
 	{		
 		this.colBorderX=Self.Perso.vx+1;
 		this.colBorderY=Self.Perso.vy+1;
+		
 		Self.Map.floorVal=472;
 
 		if(!Self.Perso.surUnObstacle || Self.Perso.surUnObstacle && !Self.KeyboardKey.heroMoveJumpBool)
