@@ -72,8 +72,7 @@ Perso.prototype =
 				weaponWidth,
 				weaponHeight
 			);
-			this.attack();
-			console.log(attack)
+			// this.attack();
 		}
 	},
 	drawLifeBar : function ()
