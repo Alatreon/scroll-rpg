@@ -10,13 +10,13 @@ Check.prototype=
 	{
 		for(var i = 0; Self.Partie.partie.monster.length>i; i++)
 		{
-			if ( Self.Partie.partie.monster[i].x-Self.Perso.x < x-weaponX + weaponWidth &&
-		   	 Self.Partie.partie.monster[i].x-Self.Perso.x + Self.Partie.partie.monster[i].width > x-weaponX &&
+			if ( Self.Partie.partie.monster[i].x-Self.Map.x < x-weaponX + weaponWidth &&
+		   	 Self.Partie.partie.monster[i].x-Self.Map.x + Self.Partie.partie.monster[i].width > x-weaponX &&
 		   	 Self.Partie.partie.monster[i].y < y-weaponY + weaponHeight &&
 		   	 Self.Partie.partie.monster[i].height + Self.Partie.partie.monster[i].y > y-weaponY &&
-			 Self.Perso.checkAttackBool && Self.Partie.partie.monster[i].life>0)
+			 this.checkAttackBool && Self.Partie.partie.monster[i].life>0)
 			{
-				Self.Perso.checkAttackBool = false;
+				this.checkAttackBool = false;
 				Self.Partie.persoAttack(i);
 			}
 		}
