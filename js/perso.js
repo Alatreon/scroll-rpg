@@ -72,7 +72,27 @@ Perso.prototype =
 				weaponWidth,
 				weaponHeight
 			);
-			// this.attack();
+			if(!Self.KeyboardKey.heroAttackBool)
+			{
+				this.attack();
+			}
+		}
+	},
+	attack : function () 
+	{		
+		this.moveAnim();
+
+		this.incrAttackAnim+=1;
+
+		Self.Check.checkAttack(self.x,self.y,self.weaponWidth,self.weaponHeight,self.leftrightWeaponX,self.leftrightWeaponY);
+		
+		if(this.incrAttackAnim>=19)
+		{
+			Self.KeyboardKey.heroAttackBool = true;
+
+			this.incrAttackAnim=0;
+
+			Self.Check.checkAttackBool = true;
 		}
 	},
 	drawLifeBar : function ()
@@ -159,23 +179,6 @@ Perso.prototype =
 		this.leftrightBool=false;
 		this.moveAnim();
 		this.x -= this.vx;
-	},
-	attack : function () 
-	{		
-		this.moveAnim();
-
-		this.incrAttackAnim+=1;
-
-		Self.Check.checkAttack(self.x,self.y,self.weaponWidth,self.weaponHeight,self.leftrightWeaponX,self.leftrightWeaponY);
-		
-		if(this.incrAttackAnim>=19)
-		{
-			Self.KeyboardKey.heroAttackBool = true;
-
-			this.incrAttackAnim=0;
-
-			Self.Check.checkAttackBool = true;
-		}
 	},
 	monsterAnimColl : function ()
 	{

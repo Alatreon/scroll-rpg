@@ -93,9 +93,9 @@ Main.prototype=
 						Self.Partie.partie.players[i].perso.height
 					);
 					/*Probleme suite a la suppresion du setInterval dans drawAttack.*/
-					console.log(Self.Partie.partie.players[i].perso.attackBool)
+					// console.log(Self.Partie.partie.players[i].perso.attackBool);
 					Self.Perso.drawAttack(
-						true/*Self.Partie.partie.players[i].perso.attackBool*/,
+						Self.Partie.partie.players[i].perso.attackBool,
 						Self.LoadImage.loadedImgList[3],
 						Self.Partie.partie.players[i].perso.weaponAnimVal,/*Position horizontale du sprite*/
 						0,/*Position verticale du sprite*/

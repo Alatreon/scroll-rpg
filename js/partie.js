@@ -4,6 +4,7 @@ function Partie ()
 	this.partie;
 	this.socket = io.connect(Self.addrServ+":8000");
 	this.dmgs=[];
+	this.perso;
 }
 Partie.prototype=
 {
@@ -69,7 +70,17 @@ Partie.prototype=
 	},
 	sendPerso : function ()
 	{
-		var perso = 
+		Self.Partie.setThisPerso();
+		Self.Partie.socket.emit('serv_perso_recept', Self.Partie.perso, Self.Map.x);
+	},
+	updatePerso : function ()
+	{
+		Self.Partie.setThisPerso();
+		Self.Partie.socket.emit('serv_perso_update', Self.Partie.perso, Self.Map.x);
+	},
+	setThisPerso : function()
+	{
+		Self.Partie.perso = 
 		{
 			persoAnimValX:Self.Perso.persoAnimValX,
 			persoAnimValY:Self.Perso.persoAnimValY,
@@ -85,14 +96,7 @@ Partie.prototype=
 			weaponHeight:Self.Perso.weaponHeight,
 			leftrightWeaponX:Self.Perso.leftrightWeaponX,
 			leftrightWeaponY:Self.Perso.leftrightWeaponY
-		}
-		console.log(Self.KeyboardKey.heroAttackBool)
-
-		Self.Partie.socket.emit('serv_perso_recept', perso, Self.Map.x);
-	},
-	updatePerso : function ()
-	{
-		Self.Partie.socket.emit('serv_perso_update', Self.Perso, Self.Map.x);
+		};
 	},
 	persoAttack : function (i)
 	{
