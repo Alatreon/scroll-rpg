@@ -50,6 +50,10 @@ function Perso ()
 	/*Mobcoll*/
 	this.monsterAnimColIncr=0;
 
+	/*HeroSkill*/
+	this.skillX = 0;
+	this.skillY = 0;
+
 }
 Perso.prototype = 
 {
@@ -71,10 +75,14 @@ Perso.prototype =
 				leftrightWeaponY,
 				weaponWidth,
 				weaponHeight
-			);
+			)
 			if(!Self.KeyboardKey.heroAttackBool)
 			{
 				this.attack();
+			}
+			if(!Self.KeyboardKey.heroSkillBool)
+			{
+				this.skill();
 			}
 		}
 	},
@@ -97,7 +105,7 @@ Perso.prototype =
 	},
 	skill : function ()
 	{
-		
+
 	},
 	drawLifeBar : function ()
 	{

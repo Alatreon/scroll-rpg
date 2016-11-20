@@ -3,10 +3,11 @@ function KeyboardKey ()
 	this.heroMoveRightInter;
 	this.heroMoveLeftInter;
 	/**/
-	this.heroMoveLeftBool=true;
-	this.heroMoveRightBool=true;
-	this.heroMoveJumpBool=true;
-	this.heroAttackBool=true;
+	this.heroMoveLeftBool = true;
+	this.heroMoveRightBool = true;
+	this.heroMoveJumpBool = true;
+	this.heroAttackBool = true;
+	this.heroSkillBool = true;
 }
 KeyboardKey.prototype=
 {
@@ -26,7 +27,7 @@ KeyboardKey.prototype=
 	},
 	keyDown : function (evt)
 	{
-		// console.log(evt.keyCode)
+		console.log(evt.keyCode);
 
 		// console.log((Self.Perso.x+Self.Map.x))
 
@@ -72,6 +73,12 @@ KeyboardKey.prototype=
 				if(evt.keyCode==32 && this.heroAttackBool)
 				{
 					this.heroAttackBool = false;
+				}
+			break;
+			case 49:
+				if(evt.keyCode==49 && this.heroSkillBool)
+				{
+					this.heroSkillBool = false;
 				}
 			break;
 		}
