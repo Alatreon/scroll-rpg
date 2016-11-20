@@ -78,8 +78,18 @@ KeyboardKey.prototype=
 			case 49:
 				if(evt.keyCode==49 && this.heroSkillBool)
 				{
-					Self.Perso.skillX=Self.Perso.x;
-					Self.Perso.skillY=Self.Perso.y+50;
+					Self.Perso.skillY=Self.Perso.y+Self.Perso.height/2;
+					Self.Perso.skillDirection=Self.Perso.leftRightBool;
+
+					if(Self.Perso.leftRightBool)
+					{
+						Self.Perso.skillX=Self.Perso.x+Self.Perso.width*1.2;
+					}
+					else
+					{
+						Self.Perso.skillX=Self.Perso.x-Self.Perso.width;
+					}
+
 					this.heroSkillBool = false;
 					Self.Check.checkSkillBool = true;
 				}

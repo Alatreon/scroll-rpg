@@ -97,7 +97,7 @@ Check.prototype=
 				Self.Perso.y < Self.Map.mapObstacles.obstacles[i].y + Self.Map.mapObstacles.obstacles[i].height &&
 				Self.Perso.height + Self.Perso.y > Self.Map.mapObstacles.obstacles[i].y)
 			{
-	    		if(Self.Perso.leftrightBool)
+	    		if(Self.Perso.leftRightBool)
 	    		{
 					this.blockX();
 				}	
@@ -112,7 +112,7 @@ Check.prototype=
 				Self.Perso.y < Self.Map.mapObstacles.obstacles[i].y + Self.Map.mapObstacles.obstacles[i].height &&
 				Self.Perso.height + Self.Perso.y > Self.Map.mapObstacles.obstacles[i].y)
 			{
-	    		if(Self.Perso.leftrightBool)
+	    		if(Self.Perso.leftRightBool)
 	    		{	
 					this.unBlockX();
 				}	
@@ -148,7 +148,7 @@ Check.prototype=
 				if((Self.Perso.x + Self.Map.x + Self.Perso.width) < ( Self.Map.mapObstacles.obstacles[i].x + Self.Map.mapObstacles.obstacles[i].width/2) && 
 				   (Self.Perso.x + Self.Map.x) < ( Self.Map.mapObstacles.obstacles[i].x + Self.Map.mapObstacles.obstacles[i].width/2))
 				{
-		    		if(Self.Perso.leftrightBool)
+		    		if(Self.Perso.leftRightBool)
 		    		{
 						this.blockX();	    		
 					}	
@@ -160,7 +160,7 @@ Check.prototype=
 				else if((Self.Perso.x + Self.Map.x + Self.Perso.width) > ( Self.Map.mapObstacles.obstacles[i].x + Self.Map.mapObstacles.obstacles[i].width/2) &&
 						(Self.Perso.x + Self.Map.x) > ( Self.Map.mapObstacles.obstacles[i].x + Self.Map.mapObstacles.obstacles[i].width/2))
 				{ 	
-		    		if(Self.Perso.leftrightBool)
+		    		if(Self.Perso.leftRightBool)
 		    		{	
 						this.unBlockX();
 					} 

@@ -23,7 +23,7 @@ function Perso ()
 
 	/*animation*/
 	this.jumpanim=0;
-	this.leftrightBool=true;
+	this.leftRightBool=true;
 	this.leftright=0;
 	this.leftrightAnim=320;
 
@@ -54,6 +54,7 @@ function Perso ()
 	this.skillX = 0;
 	this.skillY = 0;
 	this.skillSpeed = 15;
+	this.skillDirection=true;
 
 }
 Perso.prototype = 
@@ -106,15 +107,27 @@ Perso.prototype =
 	},
 	skill : function ()
 	{
-		this.skillX+=this.skillSpeed;
-		
-		Self.Check.checkSkill(this.skillX,this.skillY,64,64);
-
-		if( this.skillX > this.x + 300 )
+		if(!this.skillDirection)
 		{
-			Self.Check.checkSkillBool = false;
-			Self.KeyboardKey.heroSkillBool=true;
+			this.skillX-=this.skillSpeed;
+			
+			if( this.skillX < this.x - 300 )
+			{
+				Self.Check.checkSkillBool = false;
+				Self.KeyboardKey.heroSkillBool=true;
+			}
 		}
+		else
+		{
+			this.skillX+=this.skillSpeed;	
+
+			if( this.skillX > this.x + 300 )
+			{
+				Self.Check.checkSkillBool = false;
+				Self.KeyboardKey.heroSkillBool=true;
+			}		
+		}		
+		Self.Check.checkSkill(this.skillX,this.skillY,64,64);
 	},
 	drawLifeBar : function ()
 	{
@@ -191,13 +204,13 @@ Perso.prototype =
 	},
 	right : function () 
 	{
-		this.leftrightBool=true;
+		this.leftRightBool=true;
 		this.moveAnim();
 		this.x += this.vx;
 	},
 	left : function () 
 	{
-		this.leftrightBool=false;
+		this.leftRightBool=false;
 		this.moveAnim();
 		this.x -= this.vx;
 	},
@@ -231,7 +244,7 @@ Perso.prototype =
 	},
 	moveAnim : function ()
 	{
-		if(this.leftrightBool)
+		if(this.leftRightBool)
 		{
 			this.leftright=0;
 			this.leftrightWeapon=0;
