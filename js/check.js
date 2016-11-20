@@ -1,6 +1,7 @@
 function Check ()
 {
 	this.checkAttackBool = true;
+	this.checkSkillBool = true;
 	this.colBorderX=4/*Self.Perso.vx+1*/;
 	this.colBorderY=3/*Self.Perso.vy+1*/;
 	this.monsterAnimColBool=true;
@@ -19,6 +20,23 @@ Check.prototype=
 			{
 				this.checkAttackBool = false;
 				Self.Partie.persoAttack(i);
+			}
+		}
+
+	},
+	checkSkill : function (x,y,weaponWidth,weaponHeight)
+	{
+		for(var i = 0; Self.Partie.partie.monster.length>i; i++)
+		{
+			if ( Self.Partie.partie.monster[i].x-Self.Map.x < x + weaponWidth &&
+		   	 Self.Partie.partie.monster[i].x-Self.Map.x + Self.Partie.partie.monster[i].width > x &&
+		   	 Self.Partie.partie.monster[i].y < y + weaponHeight &&
+		   	 Self.Partie.partie.monster[i].height + Self.Partie.partie.monster[i].y > y &&
+			 this.checkSkillBool && Self.Partie.partie.monster[i].life>0)
+			{
+				Self.Partie.persoAttack(i);
+				this.checkSkillBool = false;
+				Self.KeyboardKey.heroSkillBool=true;
 			}
 		}
 

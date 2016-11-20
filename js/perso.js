@@ -53,6 +53,7 @@ function Perso ()
 	/*HeroSkill*/
 	this.skillX = 0;
 	this.skillY = 0;
+	this.skillSpeed = 15;
 
 }
 Perso.prototype = 
@@ -92,7 +93,7 @@ Perso.prototype =
 
 		this.incrAttackAnim+=1;
 
-		Self.Check.checkAttack(self.x,self.y,self.weaponWidth,self.weaponHeight,self.leftrightWeaponX,self.leftrightWeaponY);
+		Self.Check.checkAttack(this.x,this.y,this.weaponWidth,this.weaponHeight,this.leftrightWeaponX,this.leftrightWeaponY);
 		
 		if(this.incrAttackAnim>=19)
 		{
@@ -105,7 +106,15 @@ Perso.prototype =
 	},
 	skill : function ()
 	{
+		this.skillX+=this.skillSpeed;
+		
+		Self.Check.checkSkill(this.skillX,this.skillY,64,64);
 
+		if( this.skillX > this.x + 300 )
+		{
+			Self.Check.checkSkillBool = false;
+			Self.KeyboardKey.heroSkillBool=true;
+		}
 	},
 	drawLifeBar : function ()
 	{

@@ -27,7 +27,7 @@ KeyboardKey.prototype=
 	},
 	keyDown : function (evt)
 	{
-		console.log(evt.keyCode);
+		// console.log(evt.keyCode);
 
 		// console.log((Self.Perso.x+Self.Map.x))
 
@@ -78,7 +78,10 @@ KeyboardKey.prototype=
 			case 49:
 				if(evt.keyCode==49 && this.heroSkillBool)
 				{
+					Self.Perso.skillX=Self.Perso.x;
+					Self.Perso.skillY=Self.Perso.y+50;
 					this.heroSkillBool = false;
+					Self.Check.checkSkillBool = true;
 				}
 			break;
 		}
