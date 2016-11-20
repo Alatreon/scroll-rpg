@@ -63,6 +63,16 @@ Main.prototype=
 				Self.Perso.weaponHeight,
 				Self.Perso.x-Self.Perso.leftrightWeaponX,
 				Self.Perso.y-Self.Perso.leftrightWeaponY);
+
+			Self.Perso.drawAttack(
+				Self.KeyboardKey.heroSkillBool,
+				Self.LoadImage.loadedImgList[6],
+				0,/*Position horizontale du sprite*/
+				0,/*Position verticale du sprite*/
+				Self.Perso.weaponWidth,
+				Self.Perso.weaponHeight,
+				Self.Perso.skillX,
+				Self.Perso.skillY);
 			
 			Self.Texts.drawAllTexts();
 
@@ -104,6 +114,16 @@ Main.prototype=
 						(Self.Partie.partie.players[i].perso.x-Self.Map.x)-Self.Partie.partie.players[i].perso.leftrightWeaponX,
 						Self.Partie.partie.players[i].perso.y-Self.Partie.partie.players[i].perso.leftrightWeaponY
 					);
+					// Self.Perso.drawAttack(
+					// 	Self.Partie.partie.players[i].perso.skillBool,
+					// 	Self.LoadImage.loadedImgList[6],
+					// 	Self.Partie.partie.players[i].perso.weaponAnimVal,/*Position horizontale du sprite*/
+					// 	0,/*Position verticale du sprite*/
+					// 	Self.Partie.partie.players[i].perso.weaponWidth,
+					// 	Self.Partie.partie.players[i].perso.weaponHeight,
+					// 	(Self.Partie.partie.players[i].perso.x-Self.Map.x)-Self.Partie.partie.players[i].perso.leftrightWeaponX,
+					// 	Self.Partie.partie.players[i].perso.y-Self.Partie.partie.players[i].perso.leftrightWeaponY
+					// );
 					plusY+=80;
 					Self.drawOtherLifeBar(Self.Partie.partie.players[i].perso.life,Self.Partie.partie.players[i].perso.lifeMax,plusY)
 				}
