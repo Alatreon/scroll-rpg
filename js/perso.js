@@ -95,6 +95,10 @@ Perso.prototype =
 			Self.Check.checkAttackBool = true;
 		}
 	},
+	skill : function ()
+	{
+		
+	},
 	drawLifeBar : function ()
 	{
 		var x=20;
