@@ -69,8 +69,8 @@ Main.prototype=
 				Self.LoadImage.loadedImgList[6],
 				0,/*Position horizontale du sprite*/
 				0,/*Position verticale du sprite*/
-				Self.Perso.weaponWidth,
-				Self.Perso.weaponHeight,
+				Self.Perso.skillWidth,
+				Self.Perso.skillHeight,
 				Self.Perso.skillX,
 				Self.Perso.skillY);
 			

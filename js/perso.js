@@ -53,8 +53,13 @@ function Perso ()
 	/*HeroSkill*/
 	this.skillX = 0;
 	this.skillY = 0;
-	this.skillSpeed = 15;
+	this.skillSpeed = 5;
 	this.skillDirection=true;
+	this.skillDistanceMax;
+
+	/*Details visuels du skill du Perso*/
+	this.skillWidth = 46;
+	this.skillHeight = 38;
 
 }
 Perso.prototype = 
@@ -111,7 +116,9 @@ Perso.prototype =
 		{
 			this.skillX-=this.skillSpeed;
 			
-			if( this.skillX < this.x - 300 )
+			console.log(this.skillX +"<"+ this.skillDistanceMax.right)
+
+			if( this.skillX < this.skillDistanceMax.left )
 			{
 				Self.Check.checkSkillBool = false;
 				Self.KeyboardKey.heroSkillBool=true;
@@ -120,14 +127,14 @@ Perso.prototype =
 		else
 		{
 			this.skillX+=this.skillSpeed;	
-
-			if( this.skillX > this.x + 300 )
+			console.log(this.skillX +">"+ this.skillDistanceMax.right)
+			if( this.skillX > this.skillDistanceMax.right )
 			{
 				Self.Check.checkSkillBool = false;
 				Self.KeyboardKey.heroSkillBool=true;
 			}		
 		}		
-		Self.Check.checkSkill(this.skillX,this.skillY,64,64);
+		Self.Check.checkSkill(this.skillX,this.skillY,this.skillWidth,this.skillHeight);
 	},
 	drawLifeBar : function ()
 	{
