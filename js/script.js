@@ -64,10 +64,10 @@ Main.prototype=
 				Self.Perso.x-Self.Perso.leftrightWeaponX,
 				Self.Perso.y-Self.Perso.leftrightWeaponY);
 
-			Self.Perso.drawAttack(
+			Self.Perso.drawSkill(
 				Self.KeyboardKey.heroSkillBool,
 				Self.LoadImage.loadedImgList[6],
-				0,/*Position horizontale du sprite*/
+				Self.Perso.skillAnimX,/*Position horizontale du sprite*/
 				0,/*Position verticale du sprite*/
 				Self.Perso.skillWidth,
 				Self.Perso.skillHeight,

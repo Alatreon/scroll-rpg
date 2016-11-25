@@ -81,7 +81,10 @@ KeyboardKey.prototype=
 					Self.Perso.skillY=Self.Perso.y+Self.Perso.height/2;
 
 					Self.Perso.skillDirection=Self.Perso.leftRightBool;
-					Self.Perso.skillDistanceMax={left:Self.Perso.x - 300,right:Self.Perso.x + 300}
+
+					Self.Perso.skillDistanceMax={
+						left:Self.Perso.x - 300,
+						right:Self.Perso.x + 300};
 
 					if(Self.Perso.leftRightBool)
 					{

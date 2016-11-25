@@ -6,7 +6,7 @@ function Map ()
 
 	//Propriétés de la map
 	this.floorVal=472;
-	this.vx=3;
+	this.vx=3; 
 	this.width=2500;
 
 	//Elements de la map
@@ -54,7 +54,7 @@ Map.prototype=
 		if(Self.Perso.x+Self.Perso.width>Self.c.width/2 && (Self.Perso.x+Self.Map.x) < this.width-Self.Perso.width-(Self.c.width/2))
 		{
 			this.x += this.vx;
-
+			Self.Perso.skillX-= Self.Perso.vx
 			Self.Perso.x -= Self.Perso.vx;
 		}
 	},
@@ -64,6 +64,7 @@ Map.prototype=
 		{
 			this.x -= this.vx;
 
+			Self.Perso.skillX += Self.Perso.vx
 			Self.Perso.x += Self.Perso.vx;
 		}
 	},

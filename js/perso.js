@@ -53,9 +53,10 @@ function Perso ()
 	/*HeroSkill*/
 	this.skillX = 0;
 	this.skillY = 0;
-	this.skillSpeed = 5;
+	this.skillSpeed=10;
 	this.skillDirection=true;
 	this.skillDistanceMax;
+	this.skillAnimX=0;/*Position horizontale du sprite*/
 
 	/*Details visuels du skill du Perso*/
 	this.skillWidth = 46;
@@ -83,14 +84,25 @@ Perso.prototype =
 				weaponWidth,
 				weaponHeight
 			)
-			if(!Self.KeyboardKey.heroAttackBool)
-			{
-				this.attack();
-			}
-			if(!Self.KeyboardKey.heroSkillBool)
-			{
-				this.skill();
-			}
+			this.attack();
+		}
+	},
+	drawSkill : function (attack,img,weaponAnimVal,weaponAnimValVert,weaponWidth,weaponHeight,leftrightWeaponX,leftrightWeaponY) 
+	{
+		if(!attack)
+		{
+			Self.ctx.drawImage(
+				img,
+				weaponAnimVal,/*Position horizontale du sprite*/
+				weaponAnimValVert,/*Position verticale du sprite*/
+				weaponWidth,
+				weaponHeight,
+				leftrightWeaponX,
+				leftrightWeaponY,
+				weaponWidth,
+				weaponHeight
+			)
+			this.skill();
 		}
 	},
 	attack : function () 
@@ -114,9 +126,11 @@ Perso.prototype =
 	{
 		if(!this.skillDirection)
 		{
+			this.skillAnimX=184;
+
 			this.skillX-=this.skillSpeed;
-			
-			console.log(this.skillX +"<"+ this.skillDistanceMax.right)
+
+			console.log(this.skillX +"<"+ this.skillDistanceMax.right+"/");
 
 			if( this.skillX < this.skillDistanceMax.left )
 			{
@@ -126,15 +140,24 @@ Perso.prototype =
 		}
 		else
 		{
-			this.skillX+=this.skillSpeed;	
-			console.log(this.skillX +">"+ this.skillDistanceMax.right)
+			this.skillAnimX=0;
+
+			this.skillX+=this.skillSpeed;
+
+			console.log(this.skillX +">"+ this.skillDistanceMax.right+"/"+(Self.Perso.x-Self.Map.x))
+
 			if( this.skillX > this.skillDistanceMax.right )
 			{
 				Self.Check.checkSkillBool = false;
 				Self.KeyboardKey.heroSkillBool=true;
 			}		
-		}		
+		}
+
 		Self.Check.checkSkill(this.skillX,this.skillY,this.skillWidth,this.skillHeight);
+	},
+	skillAnim : function ()
+	{
+
 	},
 	drawLifeBar : function ()
 	{
