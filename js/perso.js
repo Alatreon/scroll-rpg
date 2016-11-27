@@ -53,10 +53,12 @@ function Perso ()
 	/*HeroSkill*/
 	this.skillX = 0;
 	this.skillY = 0;
-	this.skillSpeed=10;
+	this.skillSpeed=7;
 	this.skillDirection=true;
 	this.skillDistanceMax;
 	this.skillAnimX=0;/*Position horizontale du sprite*/
+	this.skillAnimXVal=0;
+	this.skillAnimXIncr=0;
 
 	/*Details visuels du skill du Perso*/
 	this.skillWidth = 46;
@@ -130,8 +132,6 @@ Perso.prototype =
 
 			this.skillX-=this.skillSpeed;
 
-			console.log(this.skillX +"<"+ this.skillDistanceMax.right+"/");
-
 			if( this.skillX < this.skillDistanceMax.left )
 			{
 				Self.Check.checkSkillBool = false;
@@ -144,8 +144,6 @@ Perso.prototype =
 
 			this.skillX+=this.skillSpeed;
 
-			console.log(this.skillX +">"+ this.skillDistanceMax.right+"/"+(Self.Perso.x-Self.Map.x))
-
 			if( this.skillX > this.skillDistanceMax.right )
 			{
 				Self.Check.checkSkillBool = false;
@@ -153,11 +151,37 @@ Perso.prototype =
 			}		
 		}
 
+		this.skillAnim();
+
 		Self.Check.checkSkill(this.skillX,this.skillY,this.skillWidth,this.skillHeight);
 	},
 	skillAnim : function ()
 	{
+		if(!this.skillDirection)
+		{
+			this.skillAnimDir=184;
+		}
+		else
+		{
+			this.skillAnimDir=0;
+		}
 
+		this.skillAnimXIncr+=1;
+
+		console.log(this.skillAnimXIncr%1)
+
+		if(this.skillAnimXIncr%5 == 1)
+		{
+			this.skillAnimXVal+=46;
+		}
+
+		if(this.skillAnimXVal>=46*4)
+		{ 
+			this.skillAnimXVal=0;
+			this.skillAnimXIncr=0;
+		}
+
+		this.skillAnimX=this.skillAnimDir+this.skillAnimXVal;
 	},
 	drawLifeBar : function ()
 	{
