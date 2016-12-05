@@ -54,8 +54,9 @@ Map.prototype=
 		if(Self.Perso.x+Self.Perso.width>Self.c.width/2 && (Self.Perso.x+Self.Map.x) < this.width-Self.Perso.width-(Self.c.width/2))
 		{
 			this.x += this.vx;
-			Self.Perso.skillX-= Self.Perso.vx
+			Self.Perso.skill.x-= Self.Perso.vx;
 			Self.Perso.x -= Self.Perso.vx;
+			Self.Perso.skill.distanceMax.right-=Self.Perso.vx;
 		}
 	},
 	left : function () 
@@ -64,8 +65,9 @@ Map.prototype=
 		{
 			this.x -= this.vx;
 
-			Self.Perso.skillX += Self.Perso.vx
+			Self.Perso.skill.x += Self.Perso.vx;
 			Self.Perso.x += Self.Perso.vx;
+			Self.Perso.skill.distanceMax.left+=Self.Perso.vx;
 		}
 	},
 	createObstacle : function ()

@@ -67,13 +67,12 @@ Main.prototype=
 			Self.Perso.drawSkill(
 				Self.KeyboardKey.heroSkillBool,
 				Self.LoadImage.loadedImgList[6],
-				Self.Perso.skillAnimX,/*Position horizontale du sprite*/
+				Self.Perso.skill.animX,/*Position horizontale du sprite*/
 				0,/*Position verticale du sprite*/
-				Self.Perso.skillWidth,
-				Self.Perso.skillHeight,
-				Self.Perso.skillX,
-				Self.Perso.skillY);
-			
+				Self.Perso.skill.width,
+				Self.Perso.skill.height,
+				Self.Perso.skill.x,
+				Self.Perso.skill.y);
 			Self.Texts.drawAllTexts();
 
 			Self.Partie.transaction();
@@ -102,29 +101,37 @@ Main.prototype=
 						Self.Partie.partie.players[i].perso.width,
 						Self.Partie.partie.players[i].perso.height
 					);
-					/*Probleme suite a la suppresion du setInterval dans drawAttack.*/
-					// console.log(Self.Partie.partie.players[i].perso.attackBool);
-					Self.Perso.drawAttack(
-						Self.Partie.partie.players[i].perso.attackBool,
-						Self.LoadImage.loadedImgList[3],
-						Self.Partie.partie.players[i].perso.weaponAnimVal,/*Position horizontale du sprite*/
-						0,/*Position verticale du sprite*/
-						Self.Partie.partie.players[i].perso.weaponWidth,
-						Self.Partie.partie.players[i].perso.weaponHeight,
-						(Self.Partie.partie.players[i].perso.x-Self.Map.x)-Self.Partie.partie.players[i].perso.leftrightWeaponX,
-						Self.Partie.partie.players[i].perso.y-Self.Partie.partie.players[i].perso.leftrightWeaponY
-					);
-					// Self.Perso.drawAttack(
-					// 	Self.Partie.partie.players[i].perso.skillBool,
-					// 	Self.LoadImage.loadedImgList[6],
-					// 	Self.Partie.partie.players[i].perso.weaponAnimVal,/*Position horizontale du sprite*/
-					// 	0,/*Position verticale du sprite*/
-					// 	Self.Partie.partie.players[i].perso.weaponWidth,
-					// 	Self.Partie.partie.players[i].perso.weaponHeight,
-					// 	(Self.Partie.partie.players[i].perso.x-Self.Map.x)-Self.Partie.partie.players[i].perso.leftrightWeaponX,
-					// 	Self.Partie.partie.players[i].perso.y-Self.Partie.partie.players[i].perso.leftrightWeaponY
-					// );
+					if(!Self.Partie.partie.players[i].perso.attackBool)
+					{
+						Self.ctx.drawImage(
+							Self.LoadImage.loadedImgList[3],
+							Self.Partie.partie.players[i].perso.weaponAnimVal,/*Position horizontale du sprite*/
+							0,/*Position verticale du sprite*/
+							Self.Partie.partie.players[i].perso.weaponWidth,
+							Self.Partie.partie.players[i].perso.weaponHeight,
+							(Self.Partie.partie.players[i].perso.x-Self.Map.x)-Self.Partie.partie.players[i].perso.leftrightWeaponX,
+							Self.Partie.partie.players[i].perso.y-Self.Partie.partie.players[i].perso.leftrightWeaponY,
+							Self.Partie.partie.players[i].perso.weaponWidth,
+							Self.Partie.partie.players[i].perso.weaponHeight
+						);
+					}
+					if(!Self.Partie.partie.players[i].perso.skill.heroSkillBool)
+					{
+						Self.ctx.drawImage(
+							Self.LoadImage.loadedImgList[6],
+							Self.Partie.partie.players[i].perso.skill.animX,/*Position horizontale du sprite*/
+							0,
+							Self.Partie.partie.players[i].perso.skill.width,
+							Self.Partie.partie.players[i].perso.skill.height,
+							Self.Partie.partie.players[i].perso.skill.x,
+							Self.Partie.partie.players[i].perso.skill.y,
+							Self.Partie.partie.players[i].perso.skill.width,
+							Self.Partie.partie.players[i].perso.skill.height
+						);
+					}
+
 					plusY+=80;
+					
 					Self.drawOtherLifeBar(Self.Partie.partie.players[i].perso.life,Self.Partie.partie.players[i].perso.lifeMax,plusY)
 				}
 			}

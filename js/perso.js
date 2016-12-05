@@ -51,18 +51,18 @@ function Perso ()
 	this.monsterAnimColIncr=0;
 
 	/*HeroSkill*/
-	this.skillX = 0;
-	this.skillY = 0;
-	this.skillSpeed=7;
-	this.skillDirection=true;
-	this.skillDistanceMax;
-	this.skillAnimX=0;/*Position horizontale du sprite*/
-	this.skillAnimXVal=0;
-	this.skillAnimXIncr=0;
-
-	/*Details visuels du skill du Perso*/
-	this.skillWidth = 46;
-	this.skillHeight = 38;
+	this.skill = {
+		x : 0,
+		y : 0,
+		speed:7,
+		direction:true,
+		distanceMax:{left:- 300, right: 300},
+		animX:0,
+		animXVal:0,
+		animXIncr:0,	
+		width:46,
+		height:38
+	}
 
 }
 Perso.prototype = 
@@ -104,7 +104,7 @@ Perso.prototype =
 				weaponWidth,
 				weaponHeight
 			)
-			this.skill();
+			this.skillLaunched();
 		}
 	},
 	attack : function () 
@@ -124,15 +124,17 @@ Perso.prototype =
 			Self.Check.checkAttackBool = true;
 		}
 	},
-	skill : function ()
+	skillLaunched : function ()
 	{
-		if(!this.skillDirection)
+		if(!this.skill.direction)
 		{
-			this.skillAnimX=184;
+			this.skill.animX=184;
 
-			this.skillX-=this.skillSpeed;
+			this.skill.x-=this.skill.speed;
 
-			if( this.skillX < this.skillDistanceMax.left )
+			console.log("left:"+this.skill.distanceMax.left);
+
+			if( this.skill.x < this.skill.distanceMax.left )
 			{
 				Self.Check.checkSkillBool = false;
 				Self.KeyboardKey.heroSkillBool=true;
@@ -140,48 +142,48 @@ Perso.prototype =
 		}
 		else
 		{
-			this.skillAnimX=0;
+			this.skill.animX=0;
 
-			this.skillX+=this.skillSpeed;
+			this.skill.x+=this.skill.speed;
 
-			if( this.skillX > this.skillDistanceMax.right )
+			console.log("right:"+this.skill.distanceMax.right);
+
+			if( this.skill.x > this.skill.distanceMax.right )
 			{
 				Self.Check.checkSkillBool = false;
-				Self.KeyboardKey.heroSkillBool=true;
+				Self.KeyboardKey.heroSkillBool = true;
 			}		
 		}
 
 		this.skillAnim();
 
-		Self.Check.checkSkill(this.skillX,this.skillY,this.skillWidth,this.skillHeight);
+		Self.Check.checkSkill(this.skill.x,this.skill.y,this.skill.width,this.skill.height);
 	},
 	skillAnim : function ()
 	{
-		if(!this.skillDirection)
+		if(!this.skill.direction)
 		{
-			this.skillAnimDir=184;
+			this.skill.animDir=184;
 		}
 		else
 		{
-			this.skillAnimDir=0;
+			this.skill.animDir=0;
 		}
 
-		this.skillAnimXIncr+=1;
+		this.skill.animXIncr+=1;
 
-		console.log(this.skillAnimXIncr%1)
-
-		if(this.skillAnimXIncr%5 == 1)
+		if(this.skill.animXIncr%5 == 1)
 		{
-			this.skillAnimXVal+=46;
+			this.skill.animXVal+=46;
 		}
 
-		if(this.skillAnimXVal>=46*4)
+		if(this.skill.animXVal>=46*4)
 		{ 
-			this.skillAnimXVal=0;
-			this.skillAnimXIncr=0;
+			this.skill.animXVal=0;
+			this.skill.animXIncr=0;
 		}
 
-		this.skillAnimX=this.skillAnimDir+this.skillAnimXVal;
+		this.skill.animX=this.skill.animDir+this.skill.animXVal;
 	},
 	drawLifeBar : function ()
 	{

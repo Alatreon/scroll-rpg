@@ -78,21 +78,21 @@ KeyboardKey.prototype=
 			case 49:
 				if(evt.keyCode==49 && this.heroSkillBool)
 				{
-					Self.Perso.skillY=Self.Perso.y+Self.Perso.height/2;
+					Self.Perso.skill.y=Self.Perso.y+Self.Perso.height/2;
 
-					Self.Perso.skillDirection=Self.Perso.leftRightBool;
+					Self.Perso.skill.direction=Self.Perso.leftRightBool;
 
-					Self.Perso.skillDistanceMax={
-						left:Self.Perso.x - 300,
-						right:Self.Perso.x + 300};
+					Self.Perso.skill.distanceMax={
+						left: Self.Perso.x - 300,
+						right: Self.Perso.x + 300};
 
 					if(Self.Perso.leftRightBool)
 					{
-						Self.Perso.skillX=Self.Perso.x+Self.Perso.width*1.2;
+						Self.Perso.skill.x=Self.Perso.x+Self.Perso.width*1.2;
 					}
 					else
 					{
-						Self.Perso.skillX=Self.Perso.x-Self.Perso.width;
+						Self.Perso.skill.x=Self.Perso.x-Self.Perso.width;
 					}
 
 					this.heroSkillBool = false;

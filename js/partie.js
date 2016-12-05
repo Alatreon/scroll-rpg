@@ -95,7 +95,15 @@ Partie.prototype=
 			weaponWidth:Self.Perso.weaponWidth,
 			weaponHeight:Self.Perso.weaponHeight,
 			leftrightWeaponX:Self.Perso.leftrightWeaponX,
-			leftrightWeaponY:Self.Perso.leftrightWeaponY
+			leftrightWeaponY:Self.Perso.leftrightWeaponY,
+			skill:{
+				heroSkillBool:Self.KeyboardKey.heroSkillBool,
+				animX:Self.Perso.skill.animX,
+				width:Self.Perso.skill.width,
+				height:Self.Perso.skill.height,
+				x:Self.Perso.skill.x,
+				y:Self.Perso.skill.y
+			}
 		};
 	},
 	persoAttack : function (i)
