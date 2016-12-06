@@ -123,7 +123,7 @@ Main.prototype=
 							0,
 							Self.Partie.partie.players[i].perso.skill.width,
 							Self.Partie.partie.players[i].perso.skill.height,
-							Self.Partie.partie.players[i].perso.skill.x,
+							Self.Partie.partie.players[i].perso.skill.x-Self.Map.x,
 							Self.Partie.partie.players[i].perso.skill.y,
 							Self.Partie.partie.players[i].perso.skill.width,
 							Self.Partie.partie.players[i].perso.skill.height

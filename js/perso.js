@@ -53,6 +53,7 @@ function Perso ()
 	/*HeroSkill*/
 	this.skill = {
 		x : 0,
+		xSend:0,
 		y : 0,
 		speed:7,
 		direction:true,
@@ -132,6 +133,8 @@ Perso.prototype =
 
 			this.skill.x-=this.skill.speed;
 
+			this.skill.xSend-=this.skill.speed;
+
 			console.log("left:"+this.skill.distanceMax.left);
 
 			if( this.skill.x < this.skill.distanceMax.left )
@@ -145,6 +148,7 @@ Perso.prototype =
 			this.skill.animX=0;
 
 			this.skill.x+=this.skill.speed;
+			this.skill.xSend+=this.skill.speed;
 
 			console.log("right:"+this.skill.distanceMax.right);
 

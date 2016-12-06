@@ -101,7 +101,7 @@ Partie.prototype=
 				animX:Self.Perso.skill.animX,
 				width:Self.Perso.skill.width,
 				height:Self.Perso.skill.height,
-				x:Self.Perso.skill.x,
+				x:Self.Perso.skill.xSend,
 				y:Self.Perso.skill.y
 			}
 		};
