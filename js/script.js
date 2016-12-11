@@ -22,8 +22,6 @@ Main.prototype=
 		Self.LoadImage.loader(function(){		
 
 			Self.KeyboardKey.actionKeys();
-			
-			/*Self.drawAll();*/
 		});
 	},
 	drawAll : function ()
