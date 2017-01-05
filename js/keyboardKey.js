@@ -94,7 +94,7 @@ KeyboardKey.prototype=
 					else
 					{
 						Self.Perso.skill.x=Self.Perso.x-Self.Perso.width;
-						Self.Perso.skill.xSend=Self.Perso.x-Self.Map.x-Self.Perso.width;
+						Self.Perso.skill.xSend=Self.Perso.x+Self.Map.x-Self.Perso.width;
 					}
 
 					this.heroSkillBool = false;
