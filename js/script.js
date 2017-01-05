@@ -121,7 +121,7 @@ Main.prototype=
 							0,
 							Self.Partie.partie.players[i].perso.skill.width,
 							Self.Partie.partie.players[i].perso.skill.height,
-							Self.Partie.partie.players[i].perso.skill.x-Self.Map.x,
+							Self.Partie.partie.players[i].perso.skill.x,
 							Self.Partie.partie.players[i].perso.skill.y,
 							Self.Partie.partie.players[i].perso.skill.width,
 							Self.Partie.partie.players[i].perso.skill.height
@@ -154,7 +154,7 @@ Main.prototype=
 			0, 0,
 			Self.LoadImage.loadedImgList[5].width,
 			Self.LoadImage.loadedImgList[5].height,
-			x,	y,
+			x, y,
 			Self.LoadImage.loadedImgList[5].width,
 			Self.LoadImage.loadedImgList[5].height
 		);

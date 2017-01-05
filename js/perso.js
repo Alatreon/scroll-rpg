@@ -57,7 +57,7 @@ function Perso ()
 		y : 0,
 		speed:7,
 		direction:true,
-		distanceMax:{left:- 300, right: 300},
+		distanceMax:{left: -300, right: 300},
 		animX:0,
 		animXVal:0,
 		animXIncr:0,	
@@ -135,7 +135,7 @@ Perso.prototype =
 
 			this.skill.xSend-=this.skill.speed;
 
-			console.log("left:"+this.skill.distanceMax.left);
+			console.log("left:"+this.skill.x);
 
 			if( this.skill.x < this.skill.distanceMax.left )
 			{
@@ -150,7 +150,7 @@ Perso.prototype =
 			this.skill.x+=this.skill.speed;
 			this.skill.xSend+=this.skill.speed;
 
-			console.log("right:"+this.skill.distanceMax.right);
+			// console.log("right:"+this.skill.distanceMax.right);
 
 			if( this.skill.x > this.skill.distanceMax.right )
 			{
