@@ -2,6 +2,7 @@ var express = require('express');
 var http = require('http');
 var fs = require('fs');
 var monster = require('./js/modules/server_monsters/monster');
+var check = require('./js/modules/server_checks/check');
 var app = express();
 var port = process.env.PORT || 8000;
 
