@@ -4,7 +4,7 @@ function CheckDeadPlayers ()
 }
 Monster.prototype = 
 {
-	checkAllHealthPlayers : function ()
+	checkAllHealthPlayers : function (test)
 	{
 
 	}
@@ -12,6 +12,4 @@ Monster.prototype =
 
 var Check = new CheckDeadPlayers(monsJson);
 
-exports. = Monster.startAll;
-exports.Monster = Monster.returnMonsterVal;
-exports.MonsterTakeDmg = Monster.takeDmg;
+exports.CheckDeadPlayers = Monster.CheckDeadPlayers.checkAllHealthPlayers;
