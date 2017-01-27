@@ -1,15 +1,15 @@
-function CheckDeadPlayers ()
+function Check ()
 {
 
 }
-Monster.prototype = 
+Check.prototype = 
 {
-	checkAllHealthPlayers : function (test)
+	CheckDeadPlayers : function (health)
 	{
 
 	}
 }
 
-var Check = new CheckDeadPlayers(monsJson);
+var check = new Check();
 
-exports.CheckDeadPlayers = Monster.CheckDeadPlayers.checkAllHealthPlayers;
+exports.CheckDeadPlayers = check.CheckDeadPlayers;

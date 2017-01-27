@@ -32,6 +32,7 @@ io.sockets.on('connection', function (socket) {
 
 	socket.emit('client_connected', socket.id, partie);
 
+	//reception des perso (a la connexion)
     socket.on('serv_perso_recept', function(perso, mappos) {
 
     	perso.x=perso.x+mappos;
@@ -44,6 +45,7 @@ io.sockets.on('connection', function (socket) {
 
     });
     
+    //mis a jour des perso(lorsque q'une personne est connecté et tant que sont script client est executé)
     socket.on('serv_perso_update', function(perso, mappos) {
 
     	// console.log(partie.players.length);
