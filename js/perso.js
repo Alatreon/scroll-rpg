@@ -135,7 +135,7 @@ Perso.prototype =
 
 			this.skill.xSend-=this.skill.speed;
 
-			console.log("left:"+this.skill.x);
+			//console.log("left:"+this.skill.x);
 
 			if( this.skill.x < this.skill.distanceMax.left )
 			{

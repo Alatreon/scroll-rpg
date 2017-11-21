@@ -25,6 +25,13 @@ KeyboardKey.prototype=
 		});
 
 	},
+	heroMoveRightFonctionInter : function ()
+	{
+		Self.Check.checkObstacle();
+		Self.Perso.right();
+		Self.Map.right();
+		this.heroMoveRightInter = requestAnimationFrame(Self.KeyboardKey.heroMoveRightFonctionInter);
+	},
 	keyDown : function (evt)
 	{
 		// console.log(evt.keyCode);
@@ -46,14 +53,10 @@ KeyboardKey.prototype=
 			case 68:
 				if(evt.keyCode==68 && this.heroMoveRightBool)
 				{
+					console.log("test");
 					this.heroMoveRightBool = false;
-					this.heroMoveRightInter = setInterval(function()
-					{
-						Self.Check.checkObstacle();
-						Self.Perso.right();
-						Self.Map.right();
 
-					},10);
+					this.heroMoveRightFonctionInter();
 				}
 			break;
 			case 81:
@@ -108,7 +111,8 @@ KeyboardKey.prototype=
 		if(evt.keyCode==68)
 		{
 			this.heroMoveRightBool = true;
-			clearInterval(this.heroMoveRightInter);
+			
+  			cancelAnimationFrame(Self.KeyboardKey.heroMoveRightInter);
 			Self.Perso.stop(evt);
 		}
 		if(evt.keyCode==81)
